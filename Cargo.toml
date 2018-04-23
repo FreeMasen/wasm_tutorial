@@ -1,0 +1,14 @@
+[package]
+name = "wasm_tutorial"
+version = "0.1.0"
+authors = ["robert masen <r@robertmasen.pizza>"]
+
+[dependencies]
+wasm_tutorial_server = { path = "crates/server" }
+
+[workspace]
+members = [
+    "crates/server",
+    "crates/browser",
+    "crates/shared"
+]
