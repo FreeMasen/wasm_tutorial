@@ -1,3 +1,8 @@
 
-/target
+**/target
 **/*.rs.bk
+.sass-cache
+dist/css
+dist/js
+data.bincode
+**/node_modules

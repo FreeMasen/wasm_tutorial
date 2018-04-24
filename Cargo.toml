@@ -10,5 +10,6 @@ wasm_tutorial_server = { path = "crates/server" }
 members = [
     "crates/server",
     "crates/browser",
-    "crates/shared"
+    "crates/shared",
+    "crates/seed"
 ]

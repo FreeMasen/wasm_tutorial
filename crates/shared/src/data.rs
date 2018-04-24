@@ -2,11 +2,9 @@ use std::fs::{File};
 use std::path::PathBuf;
 
 use bincode::{deserialize_from, serialize_into};
-use wasm_bindgen::prelude::*;
 
 type DataResult<T> = Result<T, String>;
 
-#[wasm_bindgen]
 #[derive(Serialize, Deserialize, PartialEq, Debug, Clone)]
 pub struct ToDo {
     pub id: i32,

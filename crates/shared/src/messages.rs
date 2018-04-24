@@ -1,17 +1,14 @@
 
 
 use bincode::{serialize, deserialize};
-use wasm_bindgen::prelude::*;
 use data::ToDo;
 
-#[wasm_bindgen]
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Message {
     pub kind: MessageType,
     pub data: Vec<u8>,
 }
 
-#[wasm_bindgen]
 #[derive(Debug, Deserialize, Serialize)]
 pub enum MessageType {
     GetAll,

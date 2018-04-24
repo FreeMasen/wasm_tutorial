@@ -1,0 +1,21 @@
+{
+  "name": "wasm_tutorial",
+  "version": "0.1.0",
+  "description": "tutorial for using wasm and rust",
+  "main": "ts/app.ts",
+  "repository": "https://github.com/freemasen/wasm_tutorial",
+  "author": "Robert Masen <r@robertmasen.pizza>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/react": "^16.3.12",
+    "@types/react-dom": "^16.0.5",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "devDependencies": {
+    "ts-loader": "^4.2.0",
+    "typescript": "^2.8.3",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15"
+  }
+}
