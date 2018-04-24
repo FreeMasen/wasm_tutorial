@@ -1,22 +1,7 @@
 
 
 use bincode::{serialize, deserialize};
-use data::ToDo;
-
-#[derive(Debug, Deserialize, Serialize)]
-pub struct Message {
-    pub kind: MessageType,
-    pub data: Vec<u8>,
-}
-
-#[derive(Debug, Deserialize, Serialize)]
-pub enum MessageType {
-    GetAll,
-    Add,
-    Update,
-    Remove,
-    Error,
-}
+use models::{ToDo, Message, MessageType};
 
 impl Message {
     pub fn for_error(data: String) -> Message {
@@ -37,10 +22,10 @@ impl Message {
         }
     }
 
-    pub fn todos(&self) -> Vec<ToDo> {
+    pub fn todos(&self) -> Result<Vec<ToDo>, String> {
         match deserialize(&self.data) {
-            Ok(todos) => todos,
-            Err(_e) => vec!(), //not pretty but can't use result in wasm context
+            Ok(todos) => Ok(todos),
+            Err(e) => Err(format!("{:?}", e)),
         }
     }
 }
@@ -54,8 +39,8 @@ impl Message {
         }
     }
 
-    pub fn add_client(todo: &ToDo) -> Message {
-        match serialize(todo) {
+    pub fn add_client(todo: ToDo) -> Message {
+        match serialize(&vec![todo]) {
             Ok(bytes) => Message {
                     kind: MessageType::Add,
                     data: bytes
@@ -63,8 +48,8 @@ impl Message {
             Err(e) => Self::for_error(format!("{:?}", e)),
         }
     }
-    pub fn update_client(todo: &ToDo) -> Message {
-        match serialize(todo) {
+    pub fn update_client(todo: ToDo) -> Message {
+        match serialize(&vec![todo]) {
             Ok(bytes) => Message { 
                 kind: MessageType::Update,
                 data: bytes,
@@ -73,8 +58,8 @@ impl Message {
         }
     }
 
-    pub fn remove_client(todo: &ToDo) -> Message {
-        match serialize(todo) {
+    pub fn remove_client(todo: ToDo) -> Message {
+        match serialize(&vec![todo]) {
             Ok(bytes) => Message {
                 kind: MessageType::Remove,
                 data: bytes
@@ -88,11 +73,17 @@ impl Message {
 impl Message {
     pub fn get_all_server(todos: &Vec<ToDo>) -> Message {
         match serialize(todos) {
-            Ok(bytes) => Message {
-                kind: MessageType::Remove,
-                data: bytes,
+            Ok(bytes) => {
+                println!("successfully serialized data");
+                Message {
+                    kind: MessageType::GetAll,
+                    data: bytes,
+                }
             },
-            Err(e) => Self::for_error(format!("{:?}", e))
+            Err(e) => {
+                println!("error serialaizing data {:?}", e);
+                Self::for_error(format!("{:?}", e))
+            }
         }
     }
 

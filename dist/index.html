@@ -6,7 +6,17 @@
         <title>Wasm ToDo</title>
     </head>
     <body>
-        <main id="app"></main>
+        <main id="app">
+            <header>
+                <h1>Your To Dos</h1>
+                <div id="new-todo-container">
+                    <input id="new-todo" type="text" placeholder="Add a new task" />
+                    <button id="create-new-todo" type="button">+</button>
+                </div>
+            </header>
+            <div id="list-container">
+            </div>
+        </main>
         <link type="text/css" rel="stylesheet" href="css/index.css" />
         <script type="text/javascript" src="js/app.js"></script>
     </body>

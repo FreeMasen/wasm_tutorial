@@ -1,5 +1,6 @@
 extern crate wasm_tutorial_shared;
 use wasm_tutorial_shared::data::*;
+use wasm_tutorial_shared::models::ToDo;
 
 fn main() {
     let mut data = Data::new().expect("Failed to create data");
