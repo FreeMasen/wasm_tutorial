@@ -1,0 +1,42 @@
+# Getting Started
+## Outine
+---
+- What is Rust
+  - A programming language from Mozilla
+  - Strong, staticly typing
+  - Fully compliled to native code
+    - No VM
+    - No garabage collector
+  - Memory safe garuntee
+- Getting Started
+ - Rustup
+ - Cargo
+ - Hello World
+ - Hello World Library
+- What is WASM
+  - A new standard for running code in the browser
+    - Based on asm.js
+  - Intermediate language
+    - Compiling to a half way point
+    - Think Java/C# 
+  - Strong, staticly typing
+  - No garbage collector (for now)
+- Is JavaScript dead/dying?
+  - No
+  - Why?
+  - Current limitations of WASM
+- Rust+WASM
+  - Options
+    - emscripten
+      - asm.js project
+    - wasm-bindgen
+      - rust internal project
+  - Hello World Libray.wasm
+  - Hello World Library.js
+  - Chrome bug
+- A contrived example
+  - My backend developer is refusing to send data as anything other than bincode
+    - bincode?
+  - The server endpoints are already decided
+  - The js modules are already written
+  - Let's encorproate a wasm bincode/json utility
