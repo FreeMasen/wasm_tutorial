@@ -29,5 +29,8 @@ if [ ! -f ./wbch ]; then
     chmod +x ./wbch
 fi
 echo "modifying file"
-./wbch ./dist/wasm_tutorial_browser.js ./ts/wasm_tutorial_browser.js
-rm ./dist/wasm_tutorial_browser.js
+NAME=bincode_parse.wasm
+mv ./dist/wasm_tutorial_browser_bg.wasm ./dist/$NAME
+./wbch ./dist/wasm_tutorial_browser.js ./ts/wasm_tutorial_browser.js /$NAME
+rm ./dist/*.js
+webpack $1
