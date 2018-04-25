@@ -6,7 +6,6 @@ wasm-bindgen ./target/wasm32-unknown-unknown/debug/wasm_tutorial_browser.wasm --
 
 if [ ! -f ./wbch ]; then
     echo "creating temp"
-    echo
     CURDIR=$PWD
     echo $CURDIR
     TEMP=$(mktemp)
