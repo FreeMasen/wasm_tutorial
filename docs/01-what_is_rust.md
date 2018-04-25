@@ -1,0 +1,6 @@
+- A programming language from Mozilla
+- Strong, staticly typing
+- Fully compliled to native code
+    - No VM
+    - No garabage collector
+- Memory safe garuntee

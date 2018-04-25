@@ -1,13 +1,6 @@
-# Getting Started
-## Outine
+# Outine
 ---
-- What is Rust
-  - A programming language from Mozilla
-  - Strong, staticly typing
-  - Fully compliled to native code
-    - No VM
-    - No garabage collector
-  - Memory safe garuntee
+- [What is Rust](wasm_tutorial/01-what_is_rust)
 - Getting Started
  - Rustup
  - Cargo
