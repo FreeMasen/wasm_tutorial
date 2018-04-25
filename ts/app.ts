@@ -1,4 +1,3 @@
-import {booted} from './wasm_tutorial_init';
 import * as wasm from './wasm_tutorial_browser';
 import Renderer from './services/renderer';
 import Network from './services/network';
@@ -6,9 +5,14 @@ import ToDo from './models/todo';
 
 let app;
 window.addEventListener('DOMContentLoaded', () => {
-    booted.then(() => {
+    wasm
+    .booted
+    .then(() => {
         app = new App(wasm);
     })
+    .catch(e => {
+        Renderer.showMessage('Unable to get todos', true);
+    });
 });
 
 class App {
@@ -23,7 +27,10 @@ class App {
             .then(todos => {
                 this.todos = todos
                 this.render()
-            }); 
+            })
+            .catch(e => {
+                Renderer.showMessage('Unable to get todos', true);
+            });
     }
     /**
      * Register the event handler for the new To Do button

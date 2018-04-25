@@ -3,6 +3,9 @@
 **/*.rs.bk
 .sass-cache
 dist/css
-dist/js
+**/*.js
+dist/*.wasm
+
 data.bincode
 **/node_modules
+wbch
