@@ -11,11 +11,10 @@ next: "/steps/01-what_is_rust.html"
 - [Is JavaScript dead/dying?]({{"/steps/06-death.html" | relative_url}})
 - [Rust+WASM]({{"/steps/07-rust+wasm.html" | relative_url}})
 - [Hello World Libray.wasm]({{"/steps/08-hw.wasm.html" | relative_url}})
-- [Hello World.js]({{"/steps/09-jw.js.html" | relative_url}})
-- A contrived example
-      - My backend developer is refusing to send data as anything other than bincode
-    - bincode?
-    - The server endpoints are already decided
-    - The js modules are already written
-    - Let's encorproate a wasm bincode/json utility
- 
+- [Hello World.js]({{"/steps/09-hw.js.html" | relative_url}})
+- [A contrived example]({{"/steps/10-contrived-example.html" | relative_url}})
+- [WASM to the Rescue]({{"/steps/11-rescue.html" | relative_url}})
+
+# Repos
+- [Hello World](https://github.com/freemasen/wasm_hw)
+- [Bincode To JSON](https://github.com/freemasen/wasm_tutorial)
