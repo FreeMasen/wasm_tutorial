@@ -36,3 +36,6 @@
         }
     }
 </script>
+{% if page.js %}
+<script src={{page.js | relative_url}} type="text/javascript"></script>
+{% endif%}

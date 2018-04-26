@@ -11,8 +11,7 @@ next: "/steps/01-what_is_rust.html"
 - [Is JavaScript dead/dying?]({{"/steps/06-death.html" | relative_url}})
 - [Rust+WASM]({{"/steps/07-rust+wasm.html" | relative_url}})
 - [Hello World Libray.wasm]({{"/steps/08-hw.wasm.html" | relative_url}})
-- Hello World Library.js
-- Chrome 'bug'
+- [Hello World.js]({{"/steps/09-jw.js.html" | relative_url}})
 - A contrived example
       - My backend developer is refusing to send data as anything other than bincode
     - bincode?
