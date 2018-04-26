@@ -1,11 +1,11 @@
 <footer style="width:100%;height:50px;display:flex;flex-flow:row;justify-content:space-around;">
     {% if page.prev %}
-    <a href="{{page.prev | relative_url}}">Prev</a>
+    <a id="previous-page" href="{{page.prev | relative_url}}">Prev</a>
     {% else %}
     <div></div>
     {% endif %}
     {% if page.next %}
-    <a href="{{page.next | relative_url}}">Next</a>
+    <a id="next-page" href="{{page.next | relative_url}}">Next</a>
     {% else %}
     <div></div>
     {% endif %}
@@ -18,7 +18,25 @@
         if (location.search.indexOf('presenting=true') > -1) {
             removeExplains();
             updateLinks();
+            addArrowHandlers();
         }
+    }
+
+    function addArrowHandlers() {
+        window.addEventListener('keyup', ev => {
+            switch (ev.key) {
+                case 'ArrowRight':
+                    return goToLink('next-page');
+                case 'ArrowLeft':
+                    return goToLink('previous-page');
+            }
+        });
+    }
+
+    function goToLink(id) {
+        let a = document.getElementById(id);
+        if (!a) return;
+        window.location.assign(a.href);
     }
 
     function removeExplains() {
@@ -39,3 +57,13 @@
 {% if page.js %}
 <script src={{page.js | relative_url}} type="text/javascript"></script>
 {% endif%}
+<style>
+    .wrapper { 
+        max-width: 910px !important; 
+    }
+    .highlighter-rouge {
+        display: inline-block;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+</style>

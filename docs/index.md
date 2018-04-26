@@ -8,7 +8,6 @@ next: "/steps/01-what_is_rust.html"
 - [Hello World]({{"/steps/03-hello-world.html" | relative_url}})
 - [Hello World Library]({{"/steps/04-hello-world-library.html" | relative_url}})
 - [What is WASM]({{"/steps/05-what-is-wasm.html" | relative_url}})
-- [Is JavaScript dead/dying?]({{"/steps/06-death.html" | relative_url}})
 - [Rust+WASM]({{"/steps/07-rust+wasm.html" | relative_url}})
 - [Hello World Libray.wasm]({{"/steps/08-hw.wasm.html" | relative_url}})
 - [Hello World.js]({{"/steps/09-hw.js.html" | relative_url}})

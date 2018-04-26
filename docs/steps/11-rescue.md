@@ -6,10 +6,11 @@ prev: "/steps/10.1-the-wrench.html"
 ---
 #### Generate a new library project
 ```bash
-$ cargo new --lib
+$ cargo new --lib bincode_parser
+$ cd bincode_parser
 ```
 
-#### bincode_parse.rs
+#### src/lib.rs
 ```rust
 #![feature(proc_macro, wasm_custom_section, wasm_import_module)]
 extern crate bincode;

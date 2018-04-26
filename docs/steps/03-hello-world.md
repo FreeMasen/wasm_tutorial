@@ -6,7 +6,10 @@ prev: "/steps/02.2-cargo.html"
 next: "/steps/04-hello-world-library.html"
 ---
 ## Our first rust program
-To get started we are going to use the `cargo new` command. This will generate all of your required project file and put them in the right place.
+<div class="explain">
+To get started we are going to use the <code>cargo new</code> command. This will generate all of your required project file and put them in the right place.
+</div>
+
 ```bash
 $ cargo new hello_world
     Created binary (application) `hello_world` project
@@ -19,7 +22,7 @@ $ tree
 ```
 <div class="explain">
 
-We get a new `Cargo.toml` file, a `src` folder and in that a `main.rs` file.
+We get a new <code>Cargo.toml</code>  file, a <code>src</code>  folder and in that a <code>main.rs</code>  file.
 </div>
 
 #### main.rs
@@ -31,7 +34,7 @@ fn main() {
 <div class="explain">
 
 
-Like `C` rust `binary (application)` projects require a function called `main`. For a rust program main needs to take no parameters and return nothing. Here we have a function that simply prints "Hello, world!" to the command prompt. lets test that out.
+Like <code>C</code> rust <code>binary (application)</code> projects require a function called <code>main</code> . For a rust program main needs to take no parameters and return nothing. Here we have a function that simply prints "Hello, world!" to the command prompt. lets test that out.
 </div>
 
 ```bash

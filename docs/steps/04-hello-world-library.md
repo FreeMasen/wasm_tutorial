@@ -11,7 +11,7 @@ next: "/steps/04.2-using-lib.html"
 
 In addition to the binary application type rust also offers a library application type. 
 
-If we were starting from 0, we could use the command `cargo new --lib hello_world` to create a new library application but for simplicity lets just add a library to this project. We can do that by adding a `lib.rs` file to the `src` folder.
+If we were starting from 0, we could use the command <code>cargo new --lib hello_world</code> to create a new library application but for simplicity lets just add a library to this project. We can do that by adding a <code>lib.rs</code> file to the <code>src</code> folder.
 </div>
 
 #### lib.rs
@@ -26,7 +26,6 @@ pub fn generate_custom_greeting(name: &str) -> String {
 ```
 <div class="explain">
 
-now if we were to run `cargo build --lib` we would generate a library file that could be used from other `rust` programs. 
-
-[What is with the ! and calling .to_string() on a string?](/steps/04.1-strings.html)
+now if we were to run <code>cargo build --lib</code> we would generate a library file that could be used from other <code>rust</code> programs. 
 </div>
+<a class="explain" href="{{"/steps/04.1-strings.html" | relative_url}}">What is with the ! and calling .to_string() on a string?</a>

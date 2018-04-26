@@ -34,5 +34,5 @@ $ cargo build --target wasm32-unknown-unknown
 ```
 
 <div class="explain">
-We are going to use the latter option going forward, click here [to learn more about the emscripten target](http://kripken.github.io/emscripten-site/docs/compiling/WebAssembly.html?highlight=wasm). I found the overall experience with the emscripten to be a little more difficult to understand.
+We are going to use the latter option going forward, <a href="http://kripken.github.io/emscripten-site/docs/compiling/WebAssembly.html?highlight=wasm">click here</a> to learn more about the emscripten. I found the overall experience with the emscripten to be a little more difficult to understand.
 </div>
