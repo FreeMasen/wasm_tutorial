@@ -5,8 +5,6 @@
 dist/css
 **/*.js
 dist/*.wasm
-
 data.bincode
 **/node_modules
 wbch*
-Gemfile
