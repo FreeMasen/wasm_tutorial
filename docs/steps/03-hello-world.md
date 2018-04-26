@@ -3,7 +3,7 @@ permalink: "/steps/03-hello-world.html"
 title: "Hello World"
 layout: "post"
 prev: "/steps/02.2-cargo.html"
-next: "04-hello-world-library.html"
+next: "/steps/04-hello-world-library.html"
 ---
 ## Our first rust program
 To get started we are going to use the `cargo new` command. This will generate all of your required project file and put them in the right place.
