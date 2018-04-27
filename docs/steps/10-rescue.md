@@ -1,9 +1,13 @@
 ---
-permalink: "/steps/11-rescue.html"
-title: "WASM to the rescue"
+permalink: "/steps/10-rescue.html"
+title: "WASM to the Rescue"
 layout: "post"
-prev: "/steps/10.1-the-wrench.html"
-next: "/steps/11.1-define.html"
+prev: 
+    url: "/steps/10.1-the-wrench.html"
+    text: "The Wrench"
+next: 
+    url: "/steps/10.1-define.html"
+    text: "Bincode Parser"
 ---
 <div class="explain">
 Since there is a rust library for serializing both Bincode and JSON, WASM can help. To get started we need to create a new library.

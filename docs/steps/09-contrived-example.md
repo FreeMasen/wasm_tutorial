@@ -1,9 +1,13 @@
 ---
-permalink: "/steps/10-contrived-example.html"
+permalink: "/steps/09-contrived-example.html"
 title: "A Contrived Example"
 layout: "post"
-prev: "/steps/09-hw.js.html"
-next: "/steps/10.1-the-wrench.html"
+prev: 
+    url: "/steps/08-hw.js.html"
+    text: "Using the Bindings"
+next: 
+    url: "/steps/09.1-the-wrench.html"
+    text: "The Wrench"
 ---
 ## Specification
 ### Main goal

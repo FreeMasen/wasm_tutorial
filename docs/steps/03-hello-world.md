@@ -1,9 +1,13 @@
 ---
 permalink: "/steps/03-hello-world.html"
-title: "Hello World"
+title: "Hello World!"
 layout: "post"
-prev: "/steps/02.2-cargo.html"
-next: "/steps/04-hello-world-library.html"
+prev: 
+    url: "/steps/02.2-cargo.html"
+    text: "Cargo"
+next: 
+    url: "/steps/04-hello-world-library.html"
+    text: "Hello Library!"
 ---
 ## Our first rust program
 <div class="explain">

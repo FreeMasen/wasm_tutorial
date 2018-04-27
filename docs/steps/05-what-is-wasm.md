@@ -2,8 +2,12 @@
 permalink: "/steps/05-what-is-wasm.html"
 title: "What is WASM"
 layout: "post"
-prev: "/steps/04.2-using-lib.html"
-next: "/steps/05-death.html"
+prev: 
+  url: "/steps/04.2-using-lib.html"
+  text: "Using the Library"
+next: 
+  url: "/steps/05.1-death.html"
+  text: "Is JS Dying?"
 ---
   - Based on asm.js
   - A new standard for running code in the browser

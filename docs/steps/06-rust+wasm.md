@@ -1,9 +1,13 @@
 ---
-permalink: "/steps/07-rust+wasm.html"
+permalink: "/steps/06-rust+wasm.html"
 title: "Rust + WASM"
 layout: "post"
-prev: "/steps/05-death.html"
-next: "/steps/08-hw.wasm.html"
+prev: 
+    url: "/steps/05.1-death.html"
+    text: "Is JS Dying?"
+next: 
+    url: "/steps/08-hw.wasm.html"
+    text: "Hello, WASM!"
 ---
 
 ## Options

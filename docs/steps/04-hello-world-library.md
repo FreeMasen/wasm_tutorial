@@ -1,9 +1,13 @@
 ---
 permalink: "/steps/04-hello-world-library.html"
-title: "Hello World Library"
+title: "Hello Library!"
 layout: "post"
-prev: "/steps/03-hello-world.html"
-next: "/steps/04.2-using-lib.html"
+prev: 
+    url: "/steps/03-hello-world.html"
+    text: "Hello World!"
+next: 
+    url: "/steps/04.2-using-lib.html"
+    text: "Using the Library"
 ---
 ## Compartmentialize
 
