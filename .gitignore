@@ -3,9 +3,10 @@
 **/*.rs.bk
 .sass-cache
 dist/css
-**/*.js
 dist/*.wasm
 data.bincode
 **/node_modules
 wbch*
 docs/_site
+dist/js/app.js
+ts/wasm_tutorial_browser.js
