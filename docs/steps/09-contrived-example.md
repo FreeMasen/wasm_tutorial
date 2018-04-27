@@ -28,7 +28,7 @@ One route that will be made available with both a <code>GET</code> and and <code
 
 #### message.json
 <div class="explain">
-<p>Each post body needs to be an obeject with two properties, <code>kind</code> will describe the action (Add, Remove or Update) and <code>data</code> that will describe the todo item to perform said action.</p>
+<p>Each post body needs to be an object with two properties, <code>kind</code> will describe the action (Add, Remove or Update) and <code>data</code> that will describe the todo item to perform said action.</p>
 </div>
 
 ```json
