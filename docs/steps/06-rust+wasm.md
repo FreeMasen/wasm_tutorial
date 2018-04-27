@@ -6,7 +6,7 @@ prev:
     url: "/steps/05.1-death.html"
     text: "Is JS Dying?"
 next: 
-    url: "/steps/08-hw.wasm.html"
+    url: "/steps/07-hw.wasm.html"
     text: "Hello, WASM!"
 ---
 
@@ -16,7 +16,7 @@ next:
 - Now can output as WASM
 - Lots of extra stuff added
     - Glue code
-    - c and c++ constructs (filesystem, etc)
+    - c and c++ constructs (file system, etc)
 <div class="explain">
 Rust can be compiled using a <code>--target</code> argument, this argument takes a value describing where the bin/lib will actually be run. We can use the "triplet" <code>wasm32-unknown-emscripten</code> to generate this kind of module.
 </div>
