@@ -9,7 +9,7 @@ next:
     url: "/steps/04.2-using-lib.html"
     text: "Using the Library"
 ---
-## Compartmentialize
+## Compartmentalize
 
 <div class="explain">
 <p>In addition to the binary application type rust also offers a library application type.</p>
@@ -28,6 +28,6 @@ pub fn generate_custom_greeting(name: &str) -> String {
 }
 ```
 <div class="explain">
-now if we were to run <code>cargo build --lib</code> we would generate a library file that could be used from other <code>rust</code> programs. 
+now if we were to run <code>cargo build --lib</code> we would generate a library file that could be used from other <code>rust</code> programs.
 </div>
 <a class="explain" href="{{"/steps/04.1-strings.html" | relative_url}}">What is with the ! and calling .to_string() on a string?</a>

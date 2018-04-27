@@ -55,5 +55,5 @@ One route that will be made available with both a <code>GET</code> and and <code
 ![Design spec image]({{"/assets/img/design.png" | relative_url}})
 
 <div class="explain">
-The UX designer has provided you with the above wireframe to build the UI agains
+The UX designer has provided you with the above wireframe to build the UI against
 </div>

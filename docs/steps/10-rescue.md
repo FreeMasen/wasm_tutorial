@@ -42,6 +42,6 @@ wasm-bindgen = "0.2"
 wasm_tutorial_shared = {path = "../shared}
 ```
 <div class="explain">
-<p>The main serialization library used in rust is called <code>serde</code>, short for (ser)ialize/(de)serialize. We also want to grab a special macro tied to that library called serde_derive. <code>Serde</code> doesn't implement any actual serialization or deserialization but depends on other to provide that implementations, <code>serde_json</code> and <code>bincode</code> do just that. We dont' want to forget <code>wasm-bindgen</code> and obviously the shared portion of the server that implements the models that will be sent.</p>
+<p>The main serialization library used in rust is called <code>serde</code>, short for (ser)ialize/(de)serialize. We also want to grab a special macro tied to that library called serde_derive. <code>Serde</code> doesn't implement any actual serialization or deserialization but depends on other to provide that implementations, <code>serde_json</code> and <code>bincode</code> do just that. We don't want to forget <code>wasm-bindgen</code> and obviously the shared portion of the server that implements the models that will be sent.</p>
 <p>At this point we can build a WASM module to convert these models from bincode to JSON.</p>
 </div>
