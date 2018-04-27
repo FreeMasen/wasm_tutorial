@@ -8,6 +8,9 @@ prev:
 next: 
     url: "/steps/04-hello-world-library.html"
     text: "Hello Library!"
+readings:
+    - url: "https://doc.rust-lang.org/book/second-edition/index.html"
+      text: "The Rust Book"
 ---
 ## Our first rust program
 <div class="explain">
@@ -25,8 +28,7 @@ $ tree
     └── main.rs
 ```
 <div class="explain">
-
-We get a new <code>Cargo.toml</code>  file, a <code>src</code>  folder and in that a <code>main.rs</code>  file.
+We get a new <code>Cargo.toml</code> file, a <code>src</code> folder and in that a <code>main.rs</code> file.
 </div>
 
 #### main.rs
@@ -38,7 +40,7 @@ fn main() {
 <div class="explain">
 
 
-Like <code>C</code> rust <code>binary (application)</code> projects require a function called <code>main</code> . For a rust program main needs to take no parameters and return nothing. Here we have a function that simply prints "Hello, world!" to the command prompt. lets test that out.
+Like <code>C</code> rust <code>binary (application)</code> projects require a function called <code>main</code>. For a rust program main needs to take no parameters and return nothing. Here we have a function that simply prints "Hello, world!" to the command prompt. lets test that out.
 </div>
 
 ```bash
@@ -48,3 +50,6 @@ $ cargo run
      Running `target/debug/hello_world`
 Hello, world!
 ```
+<div class="explain">
+It worked!
+</div>
