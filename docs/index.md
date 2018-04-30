@@ -1,5 +1,6 @@
 ---
 layout: home
+title: "Outline"
 next: "/steps/01-what_is_rust.html"
 ---
 - [What is Rust]({{"/steps/01-what_is_rust.html" | relative_url}})
