@@ -2,7 +2,6 @@
 layout: home
 next: "/steps/01-what_is_rust.html"
 ---
-# Outline
 - [What is Rust]({{"/steps/01-what_is_rust.html" | relative_url}})
 - [Getting Started]({{"/steps/02-getting-started.html" | relative_url}})
 - [Hello World]({{"/steps/03-hello-world.html" | relative_url}})
