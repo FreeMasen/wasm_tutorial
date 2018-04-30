@@ -17,7 +17,7 @@ extern {
 #[wasm_bindgen]
 pub fn bincode_to_json(buffer: Vec<u8>) -> String {
     log("bincode_to_json");
-    if let Ok(msg) = Message::from_bytes(buffer.to_vec()) {
+    if let Ok(msg) = Message::from_bytes(buffer) {
         match msg.todos() {
             Ok(todos) => {
                 if let Ok(ser) = serde_json::to_string(&todos) {

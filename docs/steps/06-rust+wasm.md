@@ -25,7 +25,7 @@ readings:
     - Glue code
     - c and c++ constructs (file system, etc)
 <div class="explain">
-Rust can be compiled to this "target" by passing cargo the <code>--target</code> flag with an argument describing where the code will actually be run called a triplet. We can use the triplet <code>wasm32-unknown-emscripten</code> to generate this kind of module.
+Rust can be compiled to this "target" by passing cargo the <code>--target</code> flag with an argument describing where the code will actually be run, called a triplet. We can use the triplet <code>wasm32-unknown-emscripten</code> to generate this kind of module.
 </div>
 
 ```bash
@@ -35,9 +35,9 @@ $ cargo build --target wasm32-unknown-emscipten
 ### wasm-bindgen
 - Rust internal project
 - Injects code into rust projects
-- Generates `.js` glue code
+- Generates <code>.js</code> glue code
 <div class="explain">
-Using the triplet <code>wasm32-unknown-unknown</code> we would generate a <code>.wasm</code> file that only has glue injected by <code>wasm-bindgen</code>.
+Using the triplet <code>wasm32-unknown-unknown</code> we would generate a <code>.wasm</code> file that only has no glue. We can use <code>wasm-bindgen</code> to inject the glue we are actually using.
 </div>
 
 ```bash

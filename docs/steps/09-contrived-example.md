@@ -14,7 +14,7 @@ next:
 Build a todo list application
 
 <div class="explain">
-The project manager has requested a todo list application.
+The project manager has requested a todo list application, it should be as simple as possible.
 </div>
 
 ### Routes

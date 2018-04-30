@@ -1,4 +1,5 @@
 theme: minima
 title: WASM+Rust Tutorial
 header_pages: 
-  - about.md
+    - redirect.html
+github_username: "freemasen"

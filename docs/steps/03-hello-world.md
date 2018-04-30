@@ -14,7 +14,7 @@ readings:
 ---
 ## Our first rust program
 <div class="explain">
-To get started we are going to use the <code>cargo new</code> command. This will generate all of your required project file and put them in the right place.
+To get started we are going to use the <code>cargo new</code> command. This will generate all of the required project files and put them in the right place.
 </div>
 
 ```bash
@@ -40,7 +40,7 @@ fn main() {
 <div class="explain">
 
 
-Like <code>C</code> rust <code>binary (application)</code> projects require a function called <code>main</code>. For a rust program main needs to take no parameters and return nothing. Here we have a function that simply prints "Hello, world!" to the command prompt. lets test that out.
+Like <code>C</code> rust programs require a function called <code>main</code>. For a rust program to work <code>main</code> needs to take no parameters and return nothing. Here we have a function that simply prints "Hello, world!" to the command prompt; lets test that out.
 </div>
 
 ```bash

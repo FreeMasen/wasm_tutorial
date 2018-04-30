@@ -29,9 +29,9 @@ readings:
 
 <p>If you are unfamiliar with asm.js I suggest you check out <a href="http://asmjs.org/">asmjs.org</a> or <a href="https://www.destroyallsoftware.com/talks/the-birth-and-death-of-javascript">better yet watch this somewhat silly talk about it</a>. Essentialy it is just the most performant sub-set of javascript.</p>
 
-<p>To move things even further forward, WebAssembly or WASM will provide developers with a way to compile their code to an intermediate language (IL). If you have ever written, Java or C#, these languages compile down to an IL (Java's bytecode, .net's MSIL), this intermediate step is much faster to finish compiling at run time.</p>
+<p>To move things beyond what <code>asm.js</code> could do, WebAssembly or wasm will provide developers with a way to compile their code to an intermediate language (IL). If you have ever written, Java or C#, these languages compile down to an IL (Java's bytecode, .net's MSIL), this intermediate step is much faster to finish compiling at run time.</p>
 
-<p>Most languages that utilize "Just-In-Time" compilation need to have a supervisor injected into them called the garbage collector. This supervisor just monitors the memory use for your application and automatically deallocates any data that is no longer required. JS has a garbage collector that makes life a lot easier for us users, however the current state of WASM does not allow for a garbage collector.</p>
+<p>Most languages that utilize "Just-In-Time" compilation need to have a supervisor injected into them called the garbage collector. This supervisor just monitors the memory use for your application and automatically deallocates any data that is no longer required. JS has a garbage collector that makes life a lot easier for js developers, however the current state of wasm does not allow for a garbage collector.</p>
 
 <p>When you compare the above list with our list about rust, there is a lot of overlap. Especially when you include the fact that <code>asm.js</code> is a Mozilla project as well.</p>
 </div>

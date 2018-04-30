@@ -30,4 +30,5 @@ pub fn generate_custom_greeting(name: &str) -> String {
 <div class="explain">
 now if we were to run <code>cargo build --lib</code> we would generate a library file that could be used from other <code>rust</code> programs.
 </div>
+<br />
 <a class="explain" href="{{"/steps/04.1-strings.html" | relative_url}}">What is with the ! and calling .to_string() on a string?</a>
