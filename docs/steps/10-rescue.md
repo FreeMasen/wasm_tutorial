@@ -3,7 +3,7 @@ permalink: "/steps/10-rescue.html"
 title: "WASM to the Rescue"
 layout: "post"
 prev: 
-    url: "/steps/10.1-the-wrench.html"
+    url: "/steps/09.1-the-wrench.html"
     text: "The Wrench"
 next: 
     url: "/steps/10.1-define.html"
