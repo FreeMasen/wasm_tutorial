@@ -7,7 +7,7 @@ prev:
     text: "Build the app"
 ---
 <div class="explain">
-At this point, you should have a workable <code>wasm</code> project, though you would need to stand up a server to actually get it running. I have completed both sides of the implementation, if wasnted play around with it. To do that you would need to run the following commands.
+At this point, you should have a workable <code>wasm</code> project, though you would need to stand up a server to actually get it running. I have completed both sides of the implementation, if wanted play around with it. To do that you would need to run the following commands.
 </div>
 
 ```bash

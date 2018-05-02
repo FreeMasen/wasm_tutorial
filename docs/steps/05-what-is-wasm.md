@@ -27,7 +27,7 @@ readings:
 
 <div class="explain">
 
-<p>If you are unfamiliar with asm.js I suggest you check out <a href="http://asmjs.org/">asmjs.org</a> or <a href="https://www.destroyallsoftware.com/talks/the-birth-and-death-of-javascript">better yet watch this somewhat silly talk about it</a>. Essentialy it is just the most performant sub-set of javascript.</p>
+<p>If you are unfamiliar with asm.js I suggest you check out <a href="http://asmjs.org/">asmjs.org</a> or <a href="https://www.destroyallsoftware.com/talks/the-birth-and-death-of-javascript">better yet watch this somewhat silly talk about it</a>. Essentially it is just the most performant sub-set of javascript.</p>
 
 <p>To move things beyond what <code>asm.js</code> could do, WebAssembly or wasm will provide developers with a way to compile their code to an intermediate language (IL). If you have ever written, Java or C#, these languages compile down to an IL (Java's bytecode, .net's MSIL), this intermediate step is much faster to finish compiling at run time.</p>
 
