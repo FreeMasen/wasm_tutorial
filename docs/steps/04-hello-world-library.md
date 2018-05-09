@@ -20,15 +20,16 @@ next:
 #### lib.rs
 ```rust
 pub fn generate_greeting() -> String {
-    "Hello, world!".to_string()
+    generate_custom_greeting("world")
 }
 
 pub fn generate_custom_greeting(name: &str) -> String {
-    format!("Hello, {}!", name);
+    format!("Hello, {}!", name)
 }
 ```
 <div class="explain">
-now if we were to run <code>cargo build --lib</code> we would generate a library file that could be used from other <code>rust</code> programs.
+<p>Rust has some strange syntax if you are coming from another popular language. First the return value for functions is declared with <code>-></code> followed by the name of the type it returns. The second and maybe more strange looking is that return values are implicitly the last line of a function with no semi-colon. </p>
+<p>now if we were to run <code>cargo build --lib</code> we would generate a library file that could be used from other <code>rust</code> programs.</p>
 </div>
 <br />
 <a class="explain" href="{{"/steps/04.1-strings.html" | relative_url}}">What is with the ! and calling .to_string() on a string?</a>
