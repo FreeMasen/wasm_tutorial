@@ -4,5 +4,4 @@ extern crate serde;
 extern crate serde_derive;
 
 pub mod data;
-pub mod messages;
 pub mod models;

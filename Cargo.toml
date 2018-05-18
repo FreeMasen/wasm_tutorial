@@ -14,8 +14,6 @@ members = [
     "crates/seed"
 ]
 
-[profile.dev]
-lto = true
 
 [profile.release]
 lto = true

@@ -3,11 +3,11 @@ extern crate bincode;
 extern crate serde;
 extern crate serde_json;
 extern crate wasm_bindgen;
-use wasm_bindgen::prelude::*;
-
 extern crate wasm_tutorial_shared;
 
+use wasm_bindgen::prelude::*;
 use wasm_tutorial_shared::models::{Message, ToDo};
+
 #[wasm_bindgen]
 extern {
     #[wasm_bindgen(js_namespace = console)]
@@ -18,42 +18,49 @@ extern {
 pub fn bincode_to_json(buffer: Vec<u8>) -> String {
     log("bincode_to_json");
     if let Ok(msg) = Message::from_bytes(buffer) {
-        match msg.todos() {
-            Ok(todos) => {
+        match msg {
+            Message::All(todos) => {
                 if let Ok(ser) = serde_json::to_string(&todos) {
                     return ser
                 }
             },
-            Err(e) => {
-                log(&format!("Error getting todos from msg {:?}", e));
-            }
+            Message::Error(msg) => {
+                log(&format!("Error getting todos from msg {}", msg));
+            },
+            _ => log("Incorrect message type")
         }
     }
     "[]".into()
 }
+
 #[wasm_bindgen]
 pub fn get_add_message(action: String) -> Vec<u8> {
-    log(&format!("get_add_message {}", action));
-    let todo = ToDo { id: -1, complete: false, action: action };
-    let msg = Message::add_client(todo);
+    log(&format!("get_add_message({})", action));
+    let todo = ToDo::new(-1, false, action);
+    let msg = Message::add(todo);
     log(&format!("sending back message: {:?}", msg));
     msg.to_bytes()
 }
 
 #[wasm_bindgen]
 pub fn get_update_message(id: f64, complete: bool, action: String) -> Vec<u8> {
-    let todo = ToDo { id: id as i32, complete, action };
-    let msg = Message::update_client(todo);
+    log(&format!("get_update_message({}, {}, {})", id, complete, action));
+    let todo = ToDo::new(id as i32, complete, action);
+    let msg = Message::update(todo);
     msg.to_bytes()
 }
+
 #[wasm_bindgen]
 pub fn get_remove_message(id: f64, complete: bool, action: String) -> Vec<u8> {
-    let todo = ToDo { id: id as i32, complete, action };
-    let msg = Message::remove_client(todo);
+    log(&format!("get_remove_message({}, {}, {})", id, complete, action));
+    let todo = ToDo::new(id as i32, complete, action);
+    let msg = Message::remove(todo);
     msg.to_bytes()
 }
+
 #[wasm_bindgen]
 pub fn get_all_message() -> Vec<u8> {
-    let msg = Message::get_all_client();
+    log(&format!("get_all_message"));
+    let msg = Message::get_all();
     msg.to_bytes()
 }

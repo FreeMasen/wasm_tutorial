@@ -42,12 +42,16 @@ impl Data {
         self.todos.clone()
     }
 
-    pub fn add(&mut self, todo: &mut ToDo) -> DataResult<Vec<ToDo>>  {
+    pub fn add(&mut self, todo: &ToDo) -> DataResult<Vec<ToDo>>  {
         if todo.id > -1 {
             Err(format!("An item with the id {} already exists", todo.id))
         } else {
-            todo.id = self.max_id() + 1;
-            self.todos.push(todo.to_owned());
+            let adding = ToDo {
+                id: self.max_id() + 1,
+                complete: todo.complete,
+                action: todo.action.clone(),
+            };
+            self.todos.push(adding);
             self.save_to_file()
         }
     }
