@@ -43,6 +43,7 @@ impl Data {
     }
 
     pub fn add(&mut self, todo: &ToDo) -> DataResult<Vec<ToDo>>  {
+        println!("Add {:?}", todo);
         if todo.id > -1 {
             Err(format!("An item with the id {} already exists", todo.id))
         } else {
@@ -77,10 +78,7 @@ impl Data {
         if id < -1 {
             return Err("ID is required to remove an item".into())
         }
-        self.todos = self.todos.clone()
-            .into_iter()
-            .filter(|t| t.id != id)
-            .collect();
+        self.todos.retain(|t| t.id != id);
         self.save_to_file()
     }
 

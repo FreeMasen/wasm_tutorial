@@ -14,11 +14,7 @@ export default class Network {
      * Get the list of todo items from the server
      */
     async getToDoList(): Promise<ToDo[]> {
-        return fetch('/todos')
-            .then(res => {
-                return res.arrayBuffer()
-            })
-            .then(buf => this.bufferToArray(buf));
+        return this.request('/todos', null, false);
     }
     /**
      * Send a new todo entry to the server and get back a fresh list of todos
@@ -27,12 +23,7 @@ export default class Network {
     async addToDoItem(action: string): Promise<ToDo[]> {
         let body: ArrayBuffer = this.wasm.get_add_message(action)
         console.log('sending new message', body);
-        return fetch('/todos', {body, method: 'POST'})
-            .then(res => {
-                console.log(res)
-                return res.arrayBuffer()
-            })
-            .then(buf => this.bufferToArray(buf));
+        return this.request('/todos', body, true);
     }
     /**
      * Send a todo to the server to be updated
@@ -40,9 +31,7 @@ export default class Network {
      */
     async updateToDoItem(item: ToDo): Promise<ToDo[]> {
         let body: ArrayBuffer = this.wasm.get_update_message(item.id, item.complete, item.action);
-        return fetch('/todos', {body, method: 'POST'})
-            .then(res => res.arrayBuffer())
-            .then(buf => this.bufferToArray(buf));
+        return this.request('/todos', body, true);
     }
     /**
      * Send a todo to the server to be removed
@@ -50,9 +39,7 @@ export default class Network {
      */
     async removeToDoItem(item: ToDo): Promise<ToDo[]> {
         let body: ArrayBuffer = this.wasm.get_remove_message(item.id, item.complete, item.action);
-        return fetch('/todos', {body, method: 'POST'})
-        .then(res => res.arrayBuffer())
-        .then(buf => this.bufferToArray(buf));
+        return this.request('/todos', body, true);
     }
     /**
      * Convert the server's response from raw bytes into an array of ToDo items
@@ -61,5 +48,19 @@ export default class Network {
     bufferToArray(buf: ArrayBuffer): ToDo[] {
         let json = this.wasm.bincode_to_json(new Uint8Array(buf));
         return JSON.parse(json);
+    }
+    /**
+     * Make an HTTP request, throwing for a !200 response
+     * @param route the http path to request to
+     * @param body The contents of the body
+     * @param post If the request is a POST request, false == GET
+     */
+    private async request(route: string, body: ArrayBuffer, post: boolean = false): Promise<ToDo[]> {
+        return fetch(route, {body, method: post ? 'POST' : 'GET'})
+            .then(res => {
+                if (!res.ok) return res.text().then(msg => {throw new Error(msg)});
+                return res.arrayBuffer();
+            })
+            .then(buf => this.bufferToArray(buf));
     }
 }
