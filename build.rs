@@ -16,8 +16,8 @@ fn main() {
             .arg("target")
             .arg("add")
             .arg("wasm32-unknown-unknown")
+            .spawn()
             .expect("Unable to execute target add")
-            .unwrap()
             .wait_with_output()
             .expect("Unable to execute wasm target");
         Command::new("~/.cargo/bin/cargo")
