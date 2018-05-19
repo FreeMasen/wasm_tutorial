@@ -15,11 +15,13 @@ fn main() {
             .arg("target")
             .arg("add")
             .arg("wasm32-unknown-unknown")
+            .spawn()
             .wait_with_output()
             .expect("Unable to execute wasm target");
         Command::new("~/.cargo/bin/cargo")
             .arg("install")
             .arg("wasm-bindgen")
+            .spawn()
             .wait_with_output()
             .expect("Unable to execute install wasm-bindgen");
         Command::new("sh")
