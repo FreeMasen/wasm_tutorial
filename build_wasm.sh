@@ -35,5 +35,7 @@ echo "running the chrome hack bin"
 ./wbch ./dist/wasm_tutorial_browser.js ./ts/wasm_tutorial_browser.js /$NAME
 echo "deleting the wasm-bindgen generated .js file"
 rm ./dist/*.js
+echo "downloading deps"
+npm install
 echo "running webpack"
 ./node_modules/.bin/webpack $1

@@ -6,9 +6,6 @@
   "repository": "https://github.com/freemasen/wasm_tutorial",
   "author": "Robert Masen <r@robertmasen.pizza>",
   "license": "MIT",
-  "scripts": {
-    "build": "cargo build"
-  },
   "dependencies": {
   },
   "devDependencies": {
