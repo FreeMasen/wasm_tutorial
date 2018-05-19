@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 cd crates/browser
 echo "building the browser project"
 cargo +nightly build -q --target wasm32-unknown-unknown
