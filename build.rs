@@ -9,14 +9,14 @@ fn main() {
             .arg("install")
             .arg("nightly")
             .spawn()
-            .unwrap()
+            .expect("Unable to spawn nightly install")
             .wait_with_output()
             .expect("Unable to execute nightly install");
         Command::new("~/.cargo/bin/rustup")
             .arg("target")
             .arg("add")
             .arg("wasm32-unknown-unknown")
-            .spawn()
+            .expect("Unable to execute target add")
             .unwrap()
             .wait_with_output()
             .expect("Unable to execute wasm target");
@@ -24,13 +24,13 @@ fn main() {
             .arg("install")
             .arg("wasm-bindgen")
             .spawn()
-            .unwrap()
+            .expect("Unable to install wasm-bindgen")
             .wait_with_output()
             .expect("Unable to execute install wasm-bindgen");
         Command::new("sh")
             .arg("build_wasm.sh")
             .spawn()
-            .unwrap()
+            .expect("Unable to execute build_wasm")
             .wait_with_output()
             .expect("Unable to execute build script");
     }
