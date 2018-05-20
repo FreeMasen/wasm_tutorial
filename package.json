@@ -6,8 +6,7 @@
   "repository": "https://github.com/freemasen/wasm_tutorial",
   "author": "Robert Masen <r@robertmasen.pizza>",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "awesome-typescript-loader": "^5.0.0",
     "typescript": "^2.8.3",
