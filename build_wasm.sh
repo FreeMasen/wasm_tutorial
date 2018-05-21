@@ -3,12 +3,12 @@ echo "Installing nightly"
 ~/.cargo/bin/rustup install nightly
 echo "Installing wasm32-unknown-unknown"
 ~/.cargo/bin/rustup target add wasm32-unknown-unknown
-cd crates/browser
+cd ./crates/browser
 echo "building the browser project"
-cargo +nightly build -q --target wasm32-unknown-unknown
+~/.cargo/bin/cargo +nightly build -q --target wasm32-unknown-unknown
 cd ../..
 echo "running wasm-bindgen against our project"
-wasm-bindgen ./target/wasm32-unknown-unknown/debug/wasm_tutorial_browser.wasm --browser --out-dir ./dist
+~/.cargo/bin/wasm-bindgen ./target/wasm32-unknown-unknown/debug/wasm_tutorial_browser.wasm --browser --out-dir ./dist
 echo "making sure that the wasm-bindgen-chrome-hack exists"
 if [ ! -f ./wbch ]; then
     echo "creating temp"
@@ -22,7 +22,7 @@ if [ ! -f ./wbch ]; then
     echo "moving into temp directory"
     cd $TEMP
     echo "building project"
-    cargo build -q --release
+    ~/.cargo/bin/cargo build -q --release
     echo "copying bin"
     cp ./target/release/wbch $CURDIR
     echo "move back to project folder"
