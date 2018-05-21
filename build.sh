@@ -2,7 +2,7 @@
 echo "Installing nightly"
 ~/.cargo/bin/rustup install nightly
 echo "Installing wasm32-unknown-unknown"
-~/.cargo/bin/rustup target add wasm32-unknown-unknown
+~/.cargo/bin/rustup target add --toolchain nightly wasm32-unknown-unknown
 cd ./crates/browser
 echo "building the browser project"
 ~/.cargo/bin/cargo +nightly build -q --target wasm32-unknown-unknown
