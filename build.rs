@@ -39,5 +39,6 @@ fn main() {
             .expect("Unable to execute build_wasm")
             .wait_with_output()
             .expect("Unable to execute build script");
+            
     }
 }
