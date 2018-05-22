@@ -30,6 +30,7 @@ impl Service for Server {
     type Error = Error;
     type Future = HyperResult;
     fn call(&self, req: Request) -> HyperResult {
+        println!("REQ: {}-{}", req.method(), req.path());
         if req.path() != "/todos" {
             return try_files(req);
         }
@@ -86,9 +87,10 @@ fn try_path(path: &PathBuf) -> Result<Response> {
     }
 }
 
-pub fn start_server() {
-    let addr = "127.0.0.1:8888".parse().expect("Unable to parse address");
+pub fn start_server(port: &str) {
+    let addr = format!("127.0.0.1:{}", port).parse().expect("Unable to parse address");
     let http = hyper::server::Http::new().bind(&addr, move || Ok(Server)).expect("Unable to create a server");
+    println!("starting server at {}", &addr);
     let _ = http.run();
 }
 
