@@ -8,7 +8,7 @@ echo "building the browser project"
 ~/.cargo/bin/cargo +nightly build -q --target wasm32-unknown-unknown
 cd ../..
 echo "installing wasm-bindgen"
-~/.cargo/bin/cargo install wasm-bindgen
+~/.cargo/bin/cargo install wasm-bindgen-cli
 echo "running wasm-bindgen against our project"
 ~/.cargo/bin/wasm-bindgen ./target/wasm32-unknown-unknown/debug/wasm_tutorial_browser.wasm --browser --out-dir ./dist
 cd ./dist
