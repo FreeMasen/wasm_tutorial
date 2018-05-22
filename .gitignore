@@ -12,3 +12,4 @@ dist/js/app.js
 ts/wasm_tutorial_browser.js
 .vscode
 .DS_Store
+**/*.log
