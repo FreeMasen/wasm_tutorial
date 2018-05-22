@@ -91,7 +91,10 @@ pub fn start_server(port: &str) {
     let addr = format!("127.0.0.1:{}", port).parse().expect("Unable to parse address");
     let http = hyper::server::Http::new().bind(&addr, move || Ok(Server)).expect("Unable to create a server");
     println!("starting server at {}", &addr);
-    let _ = http.run();
+    match http.run() {
+        Ok(_) => (),
+        Err(e) => println!("Error starting server {:?}", e)
+    }
 }
 
 fn get_todos(_req: Request) -> HyperResult {
