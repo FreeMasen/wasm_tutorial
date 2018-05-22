@@ -89,9 +89,19 @@ fn try_path(path: &PathBuf) -> Result<Response> {
 
 pub fn start_server(port: &str) {
     let addr = format!("127.0.0.1:{}", port).parse().expect("Unable to parse address");
-    let http = hyper::server::Http::new().bind(&addr, move || Ok(Server)).expect("Unable to create a server");
-    println!("starting server at {}", &addr);
-    match http.run() {
+    let http = hyper::server::Http::new();
+    let server = match http.bind(&addr, move || Ok(Server)) {
+        Ok(s) => {
+            println!("Successfully bound server to {}", &addr);
+            s
+        },
+        Err(e) => {
+            eprintln!("Unable to create a server {:?}", e);
+            return
+        },
+    };
+    println!("starting server");
+    match server.run() {
         Ok(_) => (),
         Err(e) => println!("Error starting server {:?}", e)
     }
