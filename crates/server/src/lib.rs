@@ -86,12 +86,9 @@ fn try_path(path: &PathBuf) -> Result<Response> {
         },
     }
 }
-use std::net::{SocketAddr, SocketAddrV6, Ipv6Addr};
+
 pub fn start_server(port: &str) {
-    let port = port.parse().expect("Unable to parse port");
-    let ip = Ipv6Addr::new(0,0,0,0,0,0,0,1);
-    let v6addr = SocketAddrV6::new(ip, port, 0, 0);
-    let addr = SocketAddr::V6(v6addr);
+    let addr = format!("0.0.0.0:{}", port).parse().expect("Unable to parse address");
     let http = hyper::server::Http::new();
     let server = match http.bind(&addr, move || Ok(Server)) {
         Ok(s) => {
