@@ -7,7 +7,7 @@ prev:
     text: "Build the app"
 ---
 <div class="explain">
-At this point, you should have a workable <code>wasm</code> project, though you would need to stand up a server to actually get it running. I have completed both sides of the implementation, if wanted play around with it. To do that you would need to run the following commands.
+At this point, you should have a workable <code>wasm</code> project, though you would need to stand up a server to actually get it running. I have completed both sides of the implementation, if wanted to run it locally you would need to run the following commands. 
 </div>
 
 ```bash
@@ -16,7 +16,8 @@ $ cd wasm_tutorial
 $ ./build_wasm.sh
 $ cargo run
 ```
-
 <div class="explain">
 That set of commands will build both the wasm and server implementations, you could then open your browser to <a href="http://localhost:8888"><code>localhost:8888</code></a> and see the application working.
 </div>
+
+[live demo](https://todo-wasm.herokuapp.com/)
