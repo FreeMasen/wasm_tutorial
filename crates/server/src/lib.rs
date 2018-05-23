@@ -110,7 +110,10 @@ pub fn start_server(port: &str) {
 fn get_todos(_req: Request) -> HyperResult {
     Box::new(
         ok(
-            handle_todo_route(Message::GetAll)
+            match handle_todo_route(Message::GetAll) {
+                Ok(msg) => Response::new().with_body(msg.to_bytes()),
+                Err(e) => r500(format!("Unable to get all: {}", e.msg)),
+            }
         )
     )
 }
@@ -121,56 +124,88 @@ fn todos(req: Request) -> HyperResult {
             .concat2()
             .map(move |b| {
                 match Message::from_bytes(b.as_ref().to_vec()) {
-                    Ok(msg) => handle_todo_route(msg),
+                    Ok(msg) => {
+                        match handle_todo_route(msg) {
+                            Ok(message) => {
+                                let buf = message.to_bytes();
+                                Response::new().with_body(buf)
+                            },
+                            Err(e) => r500(e.msg),
+                        }
+
+                    },
                     Err(e) => r500(format!("{:?}", e))
                 }
         })
     )
 }
 
-fn handle_todo_route(message: Message) -> Response {
+fn handle_todo_route(message: Message) -> DataResult<Message> {
     println!("todo route {:?}", message);
     let mut data = match Data::new() {
         Ok(d) => d,
-        Err(e) => return r500(format!("error getting data {:?}", e))
+        Err(e) => return Err(DataError::new(format!("error getting data {:?}", e)))
     };
     match message {
         Message::GetAll => {
             let todos = data.get_todos();
-            let body = Message::All(todos).to_bytes();
-            Response::new().with_body(body)
+            Ok(Message::All(todos))
         },
         Message::Add(ref todo) => {
-            match data.add(todo) {
-                Ok(updated) => {
-                    let body = Message::All(updated).to_bytes();
-                    Response::new().with_body(body)
-                },
-                Err(e) => r500(format!("Err getting updated {:?}", e))
-            }
+            let updated = data.add(todo)?;
+            Ok(Message::All(updated))
         },
         Message::Update(ref todo) => {
-            match data.update(todo) {
-                Ok(updated) => {
-                    let body = Message::All(updated).to_bytes();
-                    Response::new().with_body(body)
-                },
-                Err(e) => r500(format!("Err getting updated {:?}", e))
-            }
+            let updated = data.update(todo)?;
+            Ok(Message::All(updated))
         },
         Message::Remove(id) => {
-            match data.remove(id) {
-                Ok(updated) => {
-                    let body = Message::All(updated).to_bytes();
-                    Response::new().with_body(body)
-                },
-                Err(e) => r500(format!("Error getting updated {:?}", e))
-            }
+            let updated = data.remove(id)?;
+            Ok(Message::All(updated))
         },
-        _ => r500("I don't care about client errors"),
+        _ => Err(DataError::new("I don't care about client errors")),
     }
 }
 
 fn r500(msg: impl ToString) -> Response {
     Response::new().with_status(StatusCode::BadRequest).with_body(msg.to_string())
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use std::fs::remove_file;
+    #[test]
+    fn route() {
+        let res = handle_todo_route(Message::GetAll).unwrap();
+        if let Message::All(_) = res {
+            let _ = remove_file("data.bincode");
+        } else {
+            panic!("Incorrect message returned for get all route")
+        }
+        let add_res = handle_todo_route(Message::Add(ToDo::new(-1, false, "write tests"))).unwrap();
+        let add_todos = if let Message::All(todos) = add_res {
+            assert!(todos.len() > 0);
+            todos
+        } else {
+            panic!("Add did not return All")
+        };
+        let mut todo = add_todos[0].clone();
+        todo.complete = true;
+        let update_res = handle_todo_route(Message::Update(todo)).unwrap();
+        let update_todos = if let Message::All(todos) = update_res {
+            assert_eq!(add_todos.len(), todos.len());
+            todos
+        } else {
+            panic!("Update did not return All")
+        };
+        let todo = update_todos[0].clone();
+        let remove_res = handle_todo_route(Message::Remove(todo.id)).unwrap();
+        if let Message::All(todos) = remove_res {
+            assert!(todos.len() < update_todos.len());
+        } else {
+            panic!("Remove did not return All")
+        }
+        let _ = remove_file("data.bincode");
+    }
 }

@@ -1,0 +1,53 @@
+language: rust
+cache: cargo
+matrix:
+  include:
+    - rust: stable
+      install: true
+      script:
+        - cargo test --manifest-path crates/server/Cargo.toml
+        - cargo test --manifest-path crates/shared/Cargo.toml
+    - rust: beta
+      install: true
+      script:
+        - cargo test --manifest-path crates/server/Cargo.toml
+        - cargo test --manifest-path crates/shared/Cargo.toml
+    - rust: nightly
+      install: true
+      before_install:
+        - rustup target add --toolchain nightly wasm32-unknown-unknown
+        - nvm install 10
+      before_script: |
+        FOUND=0
+        while read l; do
+            if [[ FOUND -eq 1 ]]; then
+                echo "Found line with version"
+                TERM_VERSION=$(wasm-bindgen --version | sed s/"wasm-bindgen "/""/)
+                CARGO_VERSION=$(echo $l | sed s/"version = \""/""/)
+                CARGO_VERSION=${CARGO_VERSION::${#CARGO_VERSION}-1}
+                break
+            fi
+            if [[ "$l" == 'name = "wasm-bindgen"' ]]; then
+                FOUND=1
+            fi
+        done <Cargo.lock
+        echo "INSTALLED: $TERM_VERSION"
+        echo "CARGO: $CARGO_VERSION"
+        if [[ "$TERM_VERSION" != "$CARGO_VERSION" ]]; then
+            cargo install wasm-bindgen-cli --force
+        fi
+      script:
+        - cargo test --manifest-path crates/browser/Cargo.toml
+        - cargo install --git https://github.com/FreeMasen/wasm-chrome-hack --force
+        - cargo +nightly build --target wasm32-unknown-unknown --manifest-path crates/browser/Cargo.toml
+        - wasm-bindgen ./target/wasm32-unknown-unknown/debug/wasm_tutorial_browser.wasm --out-dir .
+        - wbch ./wasm_tutorial_browser.js ./ts/wasm_tutorial_browser.js bincode_parse.wasm
+        - npm install
+        - ./node_modules/.bin/webpack
+
+env: RUST_BACKTRACE=1
+notifications:
+  - email: false
+branches:
+  only:
+  - master
