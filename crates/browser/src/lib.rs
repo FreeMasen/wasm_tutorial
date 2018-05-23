@@ -43,16 +43,16 @@ pub fn get_add_message(action: String) -> Vec<u8> {
 }
 
 #[wasm_bindgen]
-pub fn get_update_message(id: f64, complete: bool, action: String) -> Vec<u8> {
+pub fn get_update_message(id: i32, complete: bool, action: String) -> Vec<u8> {
     log(&format!("get_update_message({}, {}, {})", id, complete, action));
-    let todo = ToDo::new(id as i32, complete, action);
+    let todo = ToDo::new(id, complete, action);
     let msg = Message::Update(todo);
     msg.to_bytes()
 }
 
 #[wasm_bindgen]
 pub fn get_remove_message(id: i32) -> Vec<u8> {
-    log(&format!("get_remove_message({}, {}, {})", id, complete, action));
+    log(&format!("get_remove_message({})", id));
     let msg = Message::Remove(id);
     msg.to_bytes()
 }

@@ -38,7 +38,7 @@ export default class Network {
      * @param item The todo to be removed
      */
     async removeToDoItem(item: ToDo): Promise<ToDo[]> {
-        let body: ArrayBuffer = this.wasm.get_remove_message(item.id, item.complete, item.action);
+        let body: ArrayBuffer = this.wasm.get_remove_message(item.id);
         return this.request('/todos', body, true);
     }
     /**
