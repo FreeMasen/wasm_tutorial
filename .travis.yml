@@ -17,7 +17,7 @@ matrix:
       before_install:
         - rustup target add wasm32-unknown-unknown
         - nvm install 10
-      before_script: cargo install wasm-bindgen-cli
+      before_script: cargo install wasm-bindgen-cli --force
       script:
         - cargo test --manifest-path crates/browser/Cargo.toml
         - cargo +nightly build --target wasm32-unknown-unknown
