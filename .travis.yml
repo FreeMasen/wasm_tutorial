@@ -1,9 +1,9 @@
-- language: rust
-
-- rust:
+language: rust
+rust:
   - stable
   - beta
-  script: cargo test
-  env: RUST_BACKTRACE=1
+cache: cargo
+script: cargo test
+env: RUST_BACKTRACE=1
 notifications:
-  none
+  - email: false
