@@ -38,9 +38,12 @@ matrix:
         fi
       script:
         - cargo test --manifest-path crates/browser/Cargo.toml
+        - cargo install --git https://github.com/freemasen/wasm-bindgen-hack --force
         - cargo +nightly build --target wasm32-unknown-unknown --manifest-path crates/browser/Cargo.toml
-        - wasm-bindgen ./target/wasm32-unknown-unknown/debug/wasm_tutorial_browser.wasm --out-dir ./ts
-        - cd ts && ls &&  cd ..
+        - wasm-bindgen ./target/wasm32-unknown-unknown/debug/wasm_tutorial_browser.wasm --out-dir .
+        - wbch ./dist/wasm_tutorial_browser.js ./ts/wasm_tutorial_browser.js bincode_parse.wasm
+        - rm ./dist/*.js
+        - mv ./dist/wasm_tutorial_browser_bg.wasm ./dist/bincode_parse.wasm
         - npm install
         - ./node_modules/.bin/webpack
 
