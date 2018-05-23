@@ -17,7 +17,25 @@ matrix:
       before_install:
         - rustup target add --toolchain nightly wasm32-unknown-unknown
         - nvm install 10
-      before_script: cargo install wasm-bindgen-cli --force
+      before_script: |
+        FOUND=0
+        while read l; do
+            if [[ FOUND -eq 1 ]]; then
+                echo "Found line with version"
+                TERM_VERSION=$(wasm-bindgen --version | sed s/"wasm-bindgen "/""/)
+                CARGO_VERSION=$(echo $l | sed s/"version = \""/""/)
+                CARGO_VERSION=${CARGO_VERSION::${#CARGO_VERSION}-1}
+                break
+            fi
+            if [[ "$l" == 'name = "wasm-bindgen"' ]]; then
+                FOUND=1
+            fi
+        done <Cargo.lock
+        echo "INSTALLED: $TERM_VERSION"
+        echo "CARGO: $CARGO_VERSION"
+        if [[ "$TERM_VERSION" != "$CARGO_VERSION" ]]; then
+            cargo install wasm-bindgen-cli --force
+        fi
       script:
         - cargo test --manifest-path crates/browser/Cargo.toml
         - cargo +nightly build --target wasm32-unknown-unknown --manifest-path crates/browser/Cargo.toml
