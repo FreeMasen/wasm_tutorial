@@ -1,19 +1,9 @@
 #! /bin/bash
-echo "Installing nightly"
-~/.cargo/bin/rustup install nightly
-echo "Installing wasm32-unknown-unknown"
-~/.cargo/bin/rustup target add --toolchain nightly wasm32-unknown-unknown
-cd ./crates/browser
-echo "building the browser project"
-~/.cargo/bin/cargo +nightly build -q --target wasm32-unknown-unknown
-cd ../..
-echo "installing wasm-bindgen"
-~/.cargo/bin/cargo install wasm-bindgen-cli
-echo "running wasm-bindgen against our project"
-~/.cargo/bin/wasm-bindgen ./target/wasm32-unknown-unknown/debug/wasm_tutorial_browser.wasm --browser --out-dir ./dist
-cd ./dist
-ls
-cd ..
+cd crates/browser && \
+cargo +nightly build --target wasm32-unknown-unknown && \
+echo "running wasm-bindgen against our project" && \
+cd ../.. && \
+wasm-bindgen ./target/wasm32-unknown-unknown/debug/wasm_tutorial_browser.wasm --browser --out-dir ./dist && \
 echo "making sure that the wasm-bindgen-chrome-hack exists"
 if [ ! -f ./wbch ]; then
     echo "creating temp"
@@ -47,6 +37,6 @@ rm ./dist/*.js
 echo "downloading deps"
 npm install
 echo "running sass"
-./node_modules/.bin/node-sass --output-style compressed -o ./dist/css -x ./sass/main.scss
+node-sass --output-style compressed -o ./dist/css -x ./sass/main.scss
 echo "running webpack"
-./node_modules/.bin/webpack $1
+webpack $1

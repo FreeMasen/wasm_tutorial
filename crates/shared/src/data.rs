@@ -1,15 +1,26 @@
 use std::fs::{File};
 use std::path::PathBuf;
 
-use bincode::{deserialize_from, serialize_into};
+use bincode::{deserialize_from, serialize_into, ErrorKind};
 use models::ToDo;
-type DataResult<T> = Result<T, String>;
 
+///Custom error type to allow for ? early returns
+#[derive(Debug)]
+pub struct DataError {
+    msg: String
+}
+/// Custom result type for easier return defs
+pub type DataResult<T> = Result<T, DataError>;
+
+/// Our actual data representation
 pub struct Data {
     todos: Vec<ToDo>
 }
 
 impl Data {
+    /// Attemptes to get the stored data from the flat file
+    /// If that fails, creates an empty data structure and saves
+    /// it to the flat file
     pub fn new() -> DataResult<Data> {
         match Self::get_from_file() {
             Ok(todos) => Ok(Data {
@@ -26,7 +37,7 @@ impl Data {
         }
         
     }
-
+    /// Get the next id -1 from our list of ToDos
     fn max_id(&self) -> i32 {
         if self.todos.len() == 0 {
             return 0
@@ -37,15 +48,15 @@ impl Data {
             0
         }
     }
-
+    /// Get a clone of our todo list
     pub fn get_todos(&self) -> Vec<ToDo> {
         self.todos.clone()
     }
-
+    /// Add a new item to our todo list (id must be -1)
     pub fn add(&mut self, todo: &ToDo) -> DataResult<Vec<ToDo>>  {
         println!("Add {:?}", todo);
         if todo.id > -1 {
-            Err(format!("An item with the id {} already exists", todo.id))
+            Err(DataError::new(format!("An item with the id {} already exists", todo.id)))
         } else {
             let adding = ToDo {
                 id: self.max_id() + 1,
@@ -56,7 +67,7 @@ impl Data {
             self.save_to_file()
         }
     }
-
+    /// Update an existing todo item based on its id
     pub fn update(&mut self, todo: &ToDo) -> DataResult<Vec<ToDo>> {
         if todo.id > -1 {
             self.todos = self.todos.clone().into_iter().map(|t| {
@@ -68,40 +79,66 @@ impl Data {
             }).collect();
             self.save_to_file()
         } else {
-            Err(String::from("An id is required to update an item"))
+            Err(DataError::new("An id is required to update an item"))
         }
     }
-
+    /// Remove any ToDos with the matching id
     pub fn remove(&mut self, id: i32) -> DataResult<Vec<ToDo>> {
         println!("Attempting to remove todo with id {}", id);
         println!("todos: {:?}", &self.todos);
         if id < -1 {
-            return Err("ID is required to remove an item".into())
+            return Err(DataError::new("ID is required to remove an item"))
         }
         self.todos.retain(|t| t.id != id);
         self.save_to_file()
     }
-
+    /// Save our ToDo List to disk, returning the full list
+    /// if successful
     fn save_to_file(&self) -> DataResult<Vec<ToDo>> {
-        let f = File::create("data.bincode").map_err(|e| format!("{:?}", e))?;
-        match serialize_into(f, &self.todos) {
-            Ok(_) => Ok(self.get_todos()),
-            Err(e) => Err(format!("{}", e)),
-        }
+        let f = File::create("data.bincode")?;
+        serialize_into(f, &self.todos)?;
+        Ok(self.get_todos())
     }
-
+    /// Get the full list of ToDos from disk
     fn get_from_file() -> DataResult<Vec<ToDo>> {
         println!("Data::get_from_file");
         let path = PathBuf::from("data.bincode");
-        if !path.exists() {
-            Err(format!("{:?} does not exist", path))
-        } else {
-            let f = File::open("data.bincode").map_err(|e| format!("{:?}", e))?;
-            match deserialize_from(&f) {
-                Ok(todos) => Ok(todos),
-                Err(e) => Err(format!("{}",e))
-            }
+        let f = File::open(path)?;
+        let todos = deserialize_from(&f)?;
+        Ok(todos)
+    }
+}
+
+impl DataError {
+    /// Construct a new DataError with the msg provided
+    fn new(msg: impl Into<String>) -> DataError {
+        DataError {
+            msg: msg.into()
         }
     }
 }
 
+impl From<::std::io::Error> for DataError {
+    /// For ? from io errors
+    fn from(other: ::std::io::Error) -> DataError {
+        DataError::new(format!("{:?}", other))
+    }
+}
+impl From<::std::boxed::Box<ErrorKind>> for DataError {
+    /// for ? from bincode errors
+    fn from(other: Box<ErrorKind>) -> DataError {
+        DataError::new(format!("{:?}", other))
+    }
+}
+impl ::std::fmt::Display for DataError {
+    /// required for implemting std::error::Error
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::result::Result<(), ::std::fmt::Error> {
+        self.msg.fmt(f)
+    }
+}
+
+impl ::std::error::Error for DataError {
+    fn description(&self) -> &str {
+        &self.msg
+    }
+}

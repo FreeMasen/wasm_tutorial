@@ -1,7 +1,0 @@
-[package]
-name = "wasm_tutorial_seed"
-version = "0.1.0"
-authors = ["Robert Masen <r@robertmasen.pizza>"]
-
-[dependencies]
-wasm_tutorial_shared = { path = "../shared" }

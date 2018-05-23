@@ -110,7 +110,7 @@ pub fn start_server(port: &str) {
 fn get_todos(_req: Request) -> HyperResult {
     Box::new(
         ok(
-            handle_todo_route(Message::get_all())
+            handle_todo_route(Message::GetAll)
         )
     )
 }
@@ -137,13 +137,13 @@ fn handle_todo_route(message: Message) -> Response {
     match message {
         Message::GetAll => {
             let todos = data.get_todos();
-            let body = Message::all(todos).to_bytes();
+            let body = Message::All(todos).to_bytes();
             Response::new().with_body(body)
         },
         Message::Add(ref todo) => {
             match data.add(todo) {
                 Ok(updated) => {
-                    let body = Message::all(updated).to_bytes();
+                    let body = Message::All(updated).to_bytes();
                     Response::new().with_body(body)
                 },
                 Err(e) => r500(format!("Err getting updated {:?}", e))
@@ -152,16 +152,16 @@ fn handle_todo_route(message: Message) -> Response {
         Message::Update(ref todo) => {
             match data.update(todo) {
                 Ok(updated) => {
-                    let body = Message::all(updated).to_bytes();
+                    let body = Message::All(updated).to_bytes();
                     Response::new().with_body(body)
                 },
                 Err(e) => r500(format!("Err getting updated {:?}", e))
             }
         },
-        Message::Remove(todo) => {
-            match data.remove(todo.id) {
+        Message::Remove(id) => {
+            match data.remove(id) {
                 Ok(updated) => {
-                    let body = Message::all(updated).to_bytes();
+                    let body = Message::All(updated).to_bytes();
                     Response::new().with_body(body)
                 },
                 Err(e) => r500(format!("Error getting updated {:?}", e))
