@@ -40,7 +40,7 @@ matrix:
         - cargo test --manifest-path crates/browser/Cargo.toml
         - cargo +nightly build --target wasm32-unknown-unknown --manifest-path crates/browser/Cargo.toml
         - wasm-bindgen ./target/wasm32-unknown-unknown/debug/wasm_tutorial_browser.wasm --out-dir .
-        - mv ./wasm_tutorial_browser_bg.wasm ./ts/bincode_parse.wasm
+        - mv ./wasm_tutorial_browser_bg.wasm ./ts/wasm_tutorial_browser.wasm
         - npm install
         - ./node_modules/.bin/webpack
 
