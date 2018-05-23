@@ -3,7 +3,12 @@ rust:
   - stable
   - beta
 cache: cargo
-script: cargo test
+before_install: nvm install 10
+script: cargo test && ./build.sh
+
 env: RUST_BACKTRACE=1
 notifications:
   - email: false
+branches:
+  only:
+  - master
