@@ -15,7 +15,7 @@ matrix:
     - rust: nightly
       install: true
       before_install:
-        - rustup target add wasm32-unknown-unknown
+        - rustup target add --toolchain nightly wasm32-unknown-unknown
         - nvm install 10
       before_script: cargo install wasm-bindgen-cli --force
       script:
