@@ -20,7 +20,7 @@ matrix:
       before_script: cargo install wasm-bindgen-cli --force
       script:
         - cargo test --manifest-path crates/browser/Cargo.toml
-        - cargo +nightly build --target wasm32-unknown-unknown
+        - cargo +nightly build --target wasm32-unknown-unknown --manifest-path crates/browser/Cargo.toml
         - wasm-bindgen ./target/wasm32-unknown-unknown/wasm_tutorial_browser.wasm --out-dir .
         - mv ./wasm_tutorial_browser.wasm ./ts/bincode_parse.wasm
         - webpack
