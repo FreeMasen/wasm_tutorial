@@ -670,13 +670,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "wasm_tutorial_seed"
-version = "0.1.0"
-dependencies = [
- "wasm_tutorial_shared 0.1.0",
-]
-
-[[package]]
 name = "wasm_tutorial_server"
 version = "0.1.0"
 dependencies = [

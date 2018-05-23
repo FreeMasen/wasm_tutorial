@@ -11,7 +11,6 @@ members = [
     "crates/server",
     "crates/browser",
     "crates/shared",
-    "crates/seed"
 ]
 
 
