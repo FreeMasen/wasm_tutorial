@@ -3,11 +3,12 @@ use bincode::{serialize, deserialize};
 /// a flag whether or not it has been completed and
 /// the action that should be taken to complete
 /// ```
+/// # use wasm_tutorial_shared::models::*;
 /// let walk_dog = ToDo {
 ///     id: 1,
 ///     complete: false,
 ///     action: "Walk the dog".into()
-/// }
+/// };
 #[derive(Serialize, Deserialize, PartialEq, Debug, Clone)]
 pub struct ToDo {
     pub id: i32,
@@ -18,6 +19,7 @@ pub struct ToDo {
 impl ToDo {
     /// construct a new ToDo item
     /// ```
+    /// # use wasm_tutorial_shared::models::*;
     /// let walk_dog = ToDo::new(1, false, "Walk the dog");
     /// ```
     pub fn new(id: i32, complete: bool, action: impl Into<String>) -> ToDo {
@@ -31,7 +33,7 @@ impl ToDo {
 
 /// A representation of our messages traveling between
 /// the server and the client
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, PartialEq, Clone)]
 pub enum Message {
     /// A message from the client to the server to
     /// get all of the ToDo items
@@ -54,7 +56,8 @@ pub enum Message {
 impl Message {
     /// Constructor for our Error type
     /// ```
-    /// let e = Message::for_error("Message")
+    /// # use wasm_tutorial_shared::models::*;
+    /// let e = Message::for_error("Message");
     /// ```
     pub fn for_error(data: impl Into<String>) -> Message {
         Message::Error(data.into())
@@ -71,5 +74,31 @@ impl Message {
             Ok(msg) => Ok(msg),
             Err(e) => Err(format!("{:?}", e))
         }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    #[test]
+    fn serialization() {
+        assert_eq!(Message::GetAll,
+            Message::from_bytes(Message::GetAll.to_bytes()).unwrap());
+        let al = Message::All(vec![ToDo::new(0, false, "")]);
+        assert_eq!(al.clone(), Message::from_bytes(al.to_bytes()).unwrap());
+        let ad = Message::Add(ToDo::new(-1,false,""));
+        assert_eq!(ad.clone(), Message::from_bytes(ad.to_bytes()).unwrap());
+        let u = Message::Update(ToDo::new(10,true,"junk"));
+        assert_eq!(u.clone(), Message::from_bytes(u.to_bytes()).unwrap());
+        let r = Message::Remove(9);
+        assert_eq!(r.clone(), Message::from_bytes(r.to_bytes()).unwrap());
+        let e = Message::for_error("Error message");
+        assert_eq!(Message::Error(String::from("Error message")), Message::from_bytes(e.to_bytes()).unwrap());
+    }
+    #[test]
+    fn new_todo() {
+        let nt = ToDo::new(10,false,"junk");
+        let t = ToDo { id: 10, complete: false, action: "junk".into()};
+        assert_eq!(nt, t);
     }
 }
