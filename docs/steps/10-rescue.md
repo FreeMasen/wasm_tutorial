@@ -6,8 +6,8 @@ prev:
     url: "/steps/09.1-the-wrench.html"
     text: "The Wrench"
 next: 
-    url: "/steps/10.1-define.html"
-    text: "Bincode Parser"
+    url: "/steps/10.0-the-models.html"
+    text: "The Models"
 ---
 <div class="explain">
 Since there is a rust library for serializing both Bincode and JSON, WASM can help. To get started we need to create a new library.
