@@ -28,7 +28,8 @@ wbch ./dist/wasm_tutorial_browser.js ./ts/wasm_tutorial_browser.js /$NAME
 echo "deleting the wasm-bindgen generated .js file"
 rm ./dist/*.js
 echo "running sass"
-rsass --style compressed ./sass/main.scss > dist/css/main.css
+mkdir -p ./dist/css
+rsass --style compressed ./sass/main.scss > ./dist/css/main.css
 echo "downloading deps"
 npm install
 echo "running webpack"
