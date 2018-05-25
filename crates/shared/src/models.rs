@@ -62,12 +62,12 @@ impl Message {
     pub fn for_error(data: impl Into<String>) -> Message {
         Message::Error(data.into())
     }
-    /// A convience function for serializing a message
+    /// A convenience function for serializing a message
     /// to Bincode
     pub fn to_bytes(self) -> Vec<u8> {
         serialize(&self).unwrap_or(vec!())
     }
-    /// A convience function for deserializing a message
+    /// A convenience function for deserializing a message
     /// from Bincode
     pub fn from_bytes(bytes: Vec<u8>) -> Result<Message, String> {
         match deserialize(&bytes) {

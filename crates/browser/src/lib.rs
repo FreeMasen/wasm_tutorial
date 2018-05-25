@@ -14,7 +14,7 @@ extern {
     #[wasm_bindgen(js_namespace = console)]
     fn log(s: &str);
 }
-/// Safty wrapper around logging that will detect
+/// Safety wrapper around logging that will detect
 /// if we should use log or println!
 fn print(s: &str) {
     if cfg!(target_arch = "wasm32") {
