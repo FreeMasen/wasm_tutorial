@@ -29,6 +29,6 @@ rm ./dist/*.js
 echo "downloading deps"
 npm install
 echo "running sass"
-rsass --style compressed -o ./sass/main.scss > dist/css/main.css
+~/.cargo/bin/rsass --style compressed ./sass/main.scss > dist/css/main.css
 echo "running webpack"
 ./node_modules/.bin/webpack $1
