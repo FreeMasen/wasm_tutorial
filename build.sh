@@ -9,6 +9,8 @@ cargo +nightly build --target wasm32-unknown-unknown
 cd ../..
 echo "installing wasm-bindgen"
 cargo install wasm-bindgen-cli
+echo "making sure that rsass exists"
+cargo install rsass --features commandline
 echo "making sure that the wasm-bindgen-chrome-hack exists"
 cargo install --git https://github.com/freemasen/wasm-chrome-hack
 echo "making sure rsass exists"
@@ -25,9 +27,9 @@ echo "running the chrome hack bin"
 wbch ./dist/wasm_tutorial_browser.js ./ts/wasm_tutorial_browser.js /$NAME
 echo "deleting the wasm-bindgen generated .js file"
 rm ./dist/*.js
+echo "running sass"
+rsass --style compressed ./sass/main.scss > dist/css/main.css
 echo "downloading deps"
 npm install
-echo "running sass"
-./node_modules/.bin/node-sass --output-style compressed -o ./dist/css -x ./sass/main.scss
 echo "running webpack"
 ./node_modules/.bin/webpack $1
