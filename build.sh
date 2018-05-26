@@ -1,5 +1,5 @@
 #! /bin/bash
-if [ ! -f "~/.cargo/bin/cargo-upstall" && ! -f "$CARGOHOME/bin/cargo-upstall" ]; then
+if [[ ! -f "~/.cargo/bin/cargo-upstall" ] && [ ! -f "$CARGOHOME/bin/cargo-upstall" ]]; then
     cargo install
 fi
 echo "Installing nightly"
