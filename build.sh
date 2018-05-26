@@ -1,4 +1,7 @@
 #! /bin/bash
+if [ ! -f "~/.cargo/bin/cargo-upstall" && ! -f "$CARGOHOME/bin/cargo-upstall" ]; then
+    cargo install
+fi
 echo "Installing nightly"
 rustup install nightly
 echo "Installing wasm32-unknown-unknown"
@@ -8,13 +11,11 @@ echo "building the browser project"
 cargo +nightly build --target wasm32-unknown-unknown
 cd ../..
 echo "installing wasm-bindgen"
-cargo install wasm-bindgen-cli
+cargo-upstall wasm-bindgen-cli
 echo "making sure that rsass exists"
-cargo install rsass --features commandline
+cargo-upstall rsass --features commandline
 echo "making sure that the wasm-bindgen-chrome-hack exists"
-cargo install --git https://github.com/freemasen/wasm-chrome-hack
-echo "making sure rsass exists"
-cargo install rsass --features=commandline
+cargo-upstall --git https://github.com/freemasen/wasm-chrome-hack
 echo "running wasm-bindgen against our project"
 wasm-bindgen ./target/wasm32-unknown-unknown/debug/wasm_tutorial_browser.wasm --browser --out-dir ./dist
 cd ./dist
