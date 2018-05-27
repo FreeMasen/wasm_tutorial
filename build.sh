@@ -1,6 +1,11 @@
 #! /bin/bash
-if [[ ! -f "~/.cargo/bin/cargo-upstall" ] && [ ! -f "$CARGOHOME/bin/cargo-upstall" ]]; then
-    cargo install
+if [[ ! $CARGOHOME ]]; then
+    echo "CARGOHOME not set"
+    CARGOHOME="$HOME/.cargo"
+fi
+if [ ! -f $CARGOHOME/bin/cargo-upstall ]; then
+    echo "cargo-install does not exist"
+    cargo install cargo-upstall
 fi
 echo "Installing nightly"
 rustup install nightly
@@ -10,6 +15,8 @@ cd ./crates/browser
 echo "building the browser project"
 cargo +nightly build --target wasm32-unknown-unknown
 cd ../..
+echo "updating cargo upstall"
+cargo-upstall cargo-upstall
 echo "installing wasm-bindgen"
 cargo-upstall wasm-bindgen-cli
 echo "making sure that rsass exists"
