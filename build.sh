@@ -16,13 +16,13 @@ echo "building the browser project"
 cargo +nightly build --target wasm32-unknown-unknown
 cd ../..
 echo "updating cargo upstall"
-cargo-upstall cargo-upstall
+cargo upstall cargo-upstall
 echo "installing wasm-bindgen"
-cargo-upstall wasm-bindgen-cli
+cargo upstall wasm-bindgen-cli
 echo "making sure that rsass exists"
-cargo-upstall rsass --features commandline
+cargo upstall rsass --features commandline
 echo "making sure that the wasm-bindgen-chrome-hack exists"
-cargo-upstall --git https://github.com/freemasen/wasm-chrome-hack
+cargo upstall --git https://github.com/freemasen/wasm-chrome-hack
 echo "running wasm-bindgen against our project"
 wasm-bindgen ./target/wasm32-unknown-unknown/debug/wasm_tutorial_browser.wasm --browser --out-dir ./dist
 cd ./dist
