@@ -5,7 +5,7 @@ if [[ ! $CARGOHOME ]]; then
 fi
 if [ ! -f $CARGOHOME/bin/cargo-upstall ]; then
     echo "cargo-install does not exist"
-    cargo install cargo-upstall
+    $CARGOHOME/bin/cargo install cargo-upstall
 fi
 echo "Installing nightly"
 rustup install nightly
