@@ -7,6 +7,7 @@ if [ ! -f $CARGOHOME/bin/cargo-upstall ]; then
     echo "cargo-install does not exist"
     cargo install cargo-upstall
 fi
+cargo install cargo-upstall --force
 echo "Installing nightly"
 rustup install nightly
 echo "Installing wasm32-unknown-unknown"
