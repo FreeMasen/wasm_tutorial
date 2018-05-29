@@ -1,4 +1,7 @@
 #! /bin/bash
+if [[ $CARGO_HOME ]]; then 
+    CARGOHOME=$CARGO_HOME
+fi
 if [[ ! $CARGOHOME ]]; then
     echo "CARGOHOME not set"
     CARGOHOME="$HOME/.cargo"
