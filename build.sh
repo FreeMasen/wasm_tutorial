@@ -6,7 +6,6 @@ if [[ ! $CARGOHOME ]]; then
     echo "CARGOHOME not set"
     CARGOHOME="$HOME/.cargo"
 fi
-cargo install cargo-upstall --force
 if [ ! -f $CARGOHOME/bin/cargo-upstall ]; then
     echo "cargo-install does not exist"
 fi
