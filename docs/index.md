@@ -15,6 +15,28 @@ next: "/steps/01-what_is_rust.html"
 - [WASM to the Rescue]({{"/steps/10-rescue.html" | relative_url}})
 - [Conclusion]({{"/steps/11-conclusion.html" | relative_url}})
 
-# Repos
-- [Hello World](https://github.com/freemasen/wasm_hw)
-- [Bincode To JSON](https://github.com/freemasen/wasm_tutorial)
+<div class="presenting">
+<h1>Annotated Presentation</h1>
+<h2><a href="https://freemasen.github.io/wasm_tutorial">https://freemasen.github.io/wasm_tutorial</a></h2>
+</div>
+
+<div class="explain">
+<h1>Repos</h1>
+<ul>
+<li>
+<a href="https://github.com/freemasen/wasm_hw">Hello World</a>
+</li>
+<li>
+<a href="https://github.com/freemasen/wasm_tutorial">Bincode To JSON</a>
+</li>
+</ul>
+<h1>Working Examples</h1>
+<ul>
+<li>
+<a href="{{"/steps/08.1-live-hw.html" | relative_url}}">Hello World</a>
+</li>
+<li>
+<a href="https://todo-wasm.herokuapp.com">Wasm ToDo</a>
+</li>
+</ul>
+</div>
