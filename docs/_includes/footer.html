@@ -79,13 +79,16 @@
 <script src={{page.js | relative_url}} type="text/javascript"></script>
 {% endif%}
 <style>
-    .wrapper { 
-        max-width: 910px !important; 
+    .wrapper {
+        max-width: 910px !important;
     }
-    .highlighter-rouge {
-        display: inline-block;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        min-width: 460px;
+
+    span.err {
+        background-color: transparent !important;
+    }
+    span.err,
+    span.nn,
+    span.k {
+        color: #099 !important;
     }
 </style>

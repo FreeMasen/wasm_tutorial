@@ -10,40 +10,37 @@ next:
     text: "Hello, WASM!"
 readings:
     - url: "http://kripken.github.io/emscripten-site/docs/compiling/WebAssembly.html?highlight=wasm"
-      text: "Emscripten's WASM page"
+      text: "Emscripten's (an alternate wasm target) WASM page"
     - url: "https://medium.com/@ianjsikes/get-started-with-rust-webassembly-and-webpack-58d28e219635"
       text: "Rust+Emscripten introduction"
     - url: "https://github.com/rustwasm/wasm-bindgen"
       text: "wasm-bindgen"
 ---
-
-## Options
-### emscripten
-- Originally LLVM to asm.js compiler
-- Now can output as WASM
-- Lots of extra stuff added
-    - Glue code
-    - c and c++ constructs (file system, etc)
-<div class="explain">
-Rust can be compiled to this "target" by passing cargo the <code>--target</code> flag with an argument describing where the code will actually be run, called a triplet. We can use the triplet <code>wasm32-unknown-emscripten</code> to generate this kind of module.
+<div class="presenting">
+<h1>wasm-bindgen</h1>
+<ul>
+<li>
+Rust internal project
+</li>
+<li>
+Injects code into rust projects
+</li>
+<li>
+Generates <code>.js</code> glue code
+</li>
+</ul>
 </div>
-
-```bash
-$ cargo build --target wasm32-unknown-emscipten
-```
-
-### wasm-bindgen
-- Rust internal project
-- Injects code into rust projects
-- Generates <code>.js</code> glue code
 <div class="explain">
-Using the triplet <code>wasm32-unknown-unknown</code> we would generate a <code>.wasm</code> file that only has no glue. We can use <code>wasm-bindgen</code> to inject the glue we are actually using.
-</div>
-
-```bash
-$ cargo build --target wasm32-unknown-unknown
-```
-
-<div class="explain">
-We are going to use the latter option going forward, I found the overall experience with the emscripten to be a little more difficult to understand. Your mileage may vary.
+<p>
+We are going to use a project from Mozilla that is designed to make working with wasm in js possible. This project is called <code>wasm-bindgen</code>, bindgen is a portmanteau of bindings and generation, that will generate a javascript file that will "bind" to our wasm functions. The reason we can do this is because the kind folks that work on the rust compiler have created a path to build Web Assembly instead of a native application. We can tell cargo we want to do this by using the <code>--target</code> flag and then provide this "target".
+</p>
+<p>
+The "target" flag allow us to compile programs that will run on another platform from whatever computer we are on. Say you wanted to compile a Linux program from your Mac, you can do that by telling the rust compiler to "target" linux. This is how we are going to go from Rust to Web Assembly, we are going to tell cargo that our "target" is <code>wasm32-unknown-unknown</code>. Targets have a special structure called a "triplet", each position means something different and there are three of them, fancy that.
+</p>
+<p>
+The first value is going to be the instruction set to use, the most common would be "x86_64", some others you might know are "i686", "powerpc" or "arm". The second position is for the manufacturer, some you might know are "sun", "apple" or, for some reason "pc-windows". The last position in our triplet is going to be the operating system, some examples of those include "ios", "solaris", "fuchsia" or "redox". Putting that together we are going to be compiling for the "wasm32" instruction set and an "unknown" manufacturer and an "unknown" os, which checks out since we wont know the last two at all.
+</p>
+<p>
+Rust does offer another wasm target <code>wasm32-unknown-emscripten</code>, this is absolutely an option, however I am not going to cover it in this tutorial.
+</p>
 </div>

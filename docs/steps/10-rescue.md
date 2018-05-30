@@ -20,7 +20,7 @@ $ cd bincode_parser
 ```
 
 <div class="explain">
-Now that we have our project, we need to add some dependencies.
+Now that we have our project, we need to add some dependencies. Update the <code>[dependencies]</code> section of your <code>Cargo.toml</code> file to include these items. While we are at it lets make sure that the <code>[lib]</code> section has <code>crate-type = ["cdylib"]</code> listed in it. It also might be a good idea to set <code>lto = true</code> in the <code>[profile.release]</code> and <code>[profile.dev]</code> sections, this will help to reduce our final <code>.wasm</code> file size by removing any unused glue code automatically.
 </div>
 
 #### Cargo.toml
@@ -41,11 +41,13 @@ bincode = "1.0.0"
 wasm-bindgen = "0.2"
 wasm_tutorial_shared = {path = "../shared}
 
+[profile.release]
+lto = true
 [profile.dev]
 lto = true
 ```
 <div class="explain">
-<p>The main serialization library used in rust is called <code>serde</code>, short for (ser)ialize/(de)serialize. We also want to grab a special macro tied to that library called serde_derive. <code>Serde</code> doesn't implement any actual serialization or deserialization but creates a baseline for developers to create implementations, <code>serde_json</code> and <code>bincode</code> do just that. We don't want to forget <code>wasm-bindgen</code> and obviously the shared portion of the server that implements the models that will be sent.</p>
-<p>Note we are also adding the entry <code>[profile.dev]</code> to ensure link time optimization is turned on, this will reduce the total size of our output to only what is being used by our program.</p>
-<p>At this point we can build a wasm module to convert these models from bincode to JSON.</p>
+<p>The main serialization library used in rust is called <code>serde</code>, short for <strong>ser</strong>ialize/<strong>de</strong>serialize. We also want to grab a special macro tied to that library called <code>serde_derive</code>. <code>Serde</code> doesn't implement any actual serialization or deserialization but creates a baseline for developers to create implementations, <code>serde_json</code> and <code>bincode</code> do just that. We don't want to forget <code>wasm-bindgen</code> and obviously the models that our server developer shared with us.</p>
+
+<p>Let's see what these models look like.</p>
 </div>

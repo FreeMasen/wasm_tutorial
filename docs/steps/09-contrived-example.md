@@ -9,6 +9,9 @@ next:
     url: "/steps/09.1-the-wrench.html"
     text: "The Wrench"
 ---
+<div class="explain">
+With <code>Hello, World!</code> out of the way, let's sink our teeth into something a little more interesting.
+</div>
 ## Specification
 ### Main goal
 Build a todo list application
@@ -26,25 +29,22 @@ One route that will be made available with both a <code>GET</code> and and <code
 - POST: todos
     - Modify a single todo item
 
-#### message.json
+#### todo.json
 <div class="explain">
-<p>Each post body needs to be an object with two properties, <code>kind</code> will describe the action (Add, Remove or Update) and <code>data</code> that will describe the todo item to perform said action.</p>
+The primary model we are going to be using will be a <code>ToDo</code>, it should look like the following.
 </div>
 
 ```json
 {
-    "kind": "Add|Remove|Update",
-    "data": [{
-        "id": 0,
-        "complete": false,
-        "action": "text here!"
-    }]
+    "id": 0,
+    "complete": false,
+    "action": "text here!"
 }
 ```
 <div class="explain">
-<p>A todo has 3 properties</p>
+<p>A <code>ToDo</code> has 3 properties</p>
 <ul>
-<li><code>id</code>: The numeric id or -1 for new items</li>
+<li><code>id</code>: The numeric id,  -1 for new items</li>
 <li><code>complete</code>: A boolean describing the completeness of the todo</li>
 <li><code>action</code>: A string describing the activity that needs to be performed</li>
 </ul>
