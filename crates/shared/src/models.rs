@@ -22,11 +22,11 @@ impl ToDo {
     /// # use wasm_tutorial_shared::models::*;
     /// let walk_dog = ToDo::new(1, false, "Walk the dog");
     /// ```
-    pub fn new(id: i32, complete: bool, action: impl Into<String>) -> ToDo {
+    pub fn new(action: String) -> ToDo {
         ToDo {
-            id,
-            complete,
-            action: action.into()
+            id: -1,
+            complete: false,
+            action: action
         }
     }
 }

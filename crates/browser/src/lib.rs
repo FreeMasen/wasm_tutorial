@@ -51,7 +51,7 @@ pub fn bincode_to_json(buffer: Vec<u8>) -> String {
 #[wasm_bindgen]
 pub fn get_add_message(action: String) -> Vec<u8> {
     print(&format!("get_add_message({})", action));
-    let todo = ToDo::new(-1, false, action);
+    let todo = ToDo::new(action);
     let msg = Message::Add(todo);
     print(&format!("sending back message: {:?}", msg));
     msg.to_bytes()
@@ -62,7 +62,7 @@ pub fn get_add_message(action: String) -> Vec<u8> {
 #[wasm_bindgen]
 pub fn get_update_message(id: i32, complete: bool, action: String) -> Vec<u8> {
     print(&format!("get_update_message({}, {}, {})", id, complete, action));
-    let todo = ToDo::new(id, complete, action);
+    let todo = ToDo{id, complete, action};
     let msg = Message::Update(todo);
     msg.to_bytes()
 }
@@ -98,7 +98,7 @@ mod test {
 
     #[test]
     fn b_to_j() {
-        let todos = vec![ToDo::new(10,false,"things"), ToDo::new(19,true,"struff")];
+        let todos = vec![ToDo{id:10,complete: false,action:"things".into()}, ToDo{id:19,complete:true,action:"stuff".into()}];
         let msg = Message::All(todos.clone());
         let bytes = msg.to_bytes();
         let j = bincode_to_json(bytes);
@@ -107,7 +107,7 @@ mod test {
     }
     #[test]
     fn get_add() {
-        let action = "Learn backflips";
+        let action = "Learn back flips";
         let bytes = get_add_message(action.to_string());
         if let Message::Add(todo) = Message::from_bytes(bytes).unwrap() {
             assert_eq!(todo.action, action);
@@ -118,7 +118,7 @@ mod test {
 
     #[test]
     fn get_update() {
-        let todo = ToDo::new(10, false, "Thigns and stuff");
+        let todo = ToDo::new("Things and stuff");
         let bytes = get_update_message(todo.id, todo.complete, todo.action.clone());
         if let Message::Update(changes) = Message::from_bytes(bytes).unwrap() {
             assert_eq!(changes, todo);

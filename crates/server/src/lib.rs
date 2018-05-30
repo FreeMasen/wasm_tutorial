@@ -110,7 +110,7 @@ pub fn start_server(port: &str) {
 fn get_todos(_req: Request) -> HyperResult {
     Box::new(
         ok(
-            match handle_todo_route(Message::GetAll) {
+            match handle_message(Message::GetAll) {
                 Ok(msg) => Response::new().with_body(msg.to_bytes()),
                 Err(e) => r500(format!("Unable to get all: {}", e.msg)),
             }
@@ -125,7 +125,7 @@ fn todos(req: Request) -> HyperResult {
             .map(move |b| {
                 match Message::from_bytes(b.as_ref().to_vec()) {
                     Ok(msg) => {
-                        match handle_todo_route(msg) {
+                        match handle_message(msg) {
                             Ok(message) => {
                                 let buf = message.to_bytes();
                                 Response::new().with_body(buf)
@@ -140,7 +140,7 @@ fn todos(req: Request) -> HyperResult {
     )
 }
 
-fn handle_todo_route(message: Message) -> DataResult<Message> {
+fn handle_message(message: Message) -> DataResult<Message> {
     println!("todo route {:?}", message);
     let mut data = match Data::new() {
         Ok(d) => d,
@@ -177,13 +177,13 @@ mod test {
     use std::fs::remove_file;
     #[test]
     fn route() {
-        let res = handle_todo_route(Message::GetAll).unwrap();
+        let res = handle_message(Message::GetAll).unwrap();
         if let Message::All(_) = res {
             let _ = remove_file("data.bincode");
         } else {
             panic!("Incorrect message returned for get all route")
         }
-        let add_res = handle_todo_route(Message::Add(ToDo::new(-1, false, "write tests"))).unwrap();
+        let add_res = handle_message(Message::Add(ToDo::new("write tests".into()))).unwrap();
         let add_todos = if let Message::All(todos) = add_res {
             assert!(todos.len() > 0);
             todos
@@ -192,7 +192,7 @@ mod test {
         };
         let mut todo = add_todos[0].clone();
         todo.complete = true;
-        let update_res = handle_todo_route(Message::Update(todo)).unwrap();
+        let update_res = handle_message(Message::Update(todo)).unwrap();
         let update_todos = if let Message::All(todos) = update_res {
             assert_eq!(add_todos.len(), todos.len());
             todos
@@ -200,7 +200,7 @@ mod test {
             panic!("Update did not return All")
         };
         let todo = update_todos[0].clone();
-        let remove_res = handle_todo_route(Message::Remove(todo.id)).unwrap();
+        let remove_res = handle_message(Message::Remove(todo.id)).unwrap();
         if let Message::All(todos) = remove_res {
             assert!(todos.len() < update_todos.len());
         } else {
