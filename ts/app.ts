@@ -4,15 +4,13 @@ import Network from './services/network';
 import ToDo from './models/todo';
 
 let app;
-window.addEventListener('DOMContentLoaded', () => {
-    wasm
-    .booted
-    .then(() => {
-        app = new App(wasm);
-    })
-    .catch(e => {
-        Renderer.showMessage('Unable to get todos', true);
-    });
+
+wasm.booted.then(() => {
+    console.log('import.then', wasm);
+    app = new App(wasm);
+})
+.catch(e => {
+    console.error('Error loading wasm', e);
 });
 
 class App {

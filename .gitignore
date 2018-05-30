@@ -4,6 +4,7 @@
 .sass-cache
 dist/css
 dist/*.wasm
+dist/**/*.map
 data.bincode
 **/node_modules
 wbch*
@@ -14,3 +15,4 @@ ts/wasm_tutorial_browser.js
 .DS_Store
 **/*.log
 **/*.d.ts
+.eslintrc.yml
