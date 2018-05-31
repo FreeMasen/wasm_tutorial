@@ -118,7 +118,7 @@ mod test {
 
     #[test]
     fn get_update() {
-        let todo = ToDo::new("Things and stuff");
+        let todo = ToDo::new("Things and stuff".into());
         let bytes = get_update_message(todo.id, todo.complete, todo.action.clone());
         if let Message::Update(changes) = Message::from_bytes(bytes).unwrap() {
             assert_eq!(changes, todo);

@@ -191,7 +191,7 @@ mod test {
     fn add_test() {
         let file_name = "add_test.bincode";
         let mut d = Data::get_or_create(&file_name).unwrap();
-        let new_todo = ToDo::new(-1, false, "Take a walk");
+        let new_todo = ToDo::new("Take a walk".into());
         d.add(&new_todo).expect("Unable to add new todo");
         assert!(d.todos.iter().any(|t| t.action == new_todo.action));
         remove_test_file(&file_name);
@@ -201,7 +201,7 @@ mod test {
         let file_name = "update_test.bincode";
         let mut d = Data::get_or_create(&file_name).unwrap();
         d.todos = mock_todos();
-        d.update(&ToDo::new(0, true, "Walk the dog")).expect("Unable to update todo");
+        d.update(&ToDo{id:0,complete:true,action:"Walk the dog".into()}).expect("Unable to update todo");
         assert!(d.todos.iter().any(|t| t.action == "Walk the dog" && t.id == 0 && t.complete == true));
         assert!(d.todos != mock_todos());
         remove_test_file(&file_name);
@@ -232,7 +232,7 @@ mod test {
     fn add_fail() {
         let file_name = "add_fail.bincode";
         let mut d = Data::get_or_create(&file_name).unwrap();
-        match d.add(&ToDo::new(6, false, "")) {
+        match d.add(&ToDo{id:6,complete:false,action:"".into()}) {
             Ok(_) => {
                 remove_test_file(&file_name);
                 panic!("Added todo with id != -1")
@@ -256,7 +256,7 @@ mod test {
     fn update_fail() {
         let file_name = "update_fail.bincode";
         let mut d = Data::get_or_create(&file_name).unwrap();
-        match d.update(&ToDo::new(-1, false, "")) {
+        match d.update(&ToDo::new("".into())) {
             Ok(_) => panic!("Updated successfully with an id == -1"),
             _ => ()
         }
@@ -264,10 +264,10 @@ mod test {
 
     fn mock_todos() -> Vec<ToDo> {
         vec![
-            ToDo::new(0, false, "Walk the dog"),
-            ToDo::new(1, false, "Buy new couch"),
-            ToDo::new(2, true, "Watch Luther"),
-            ToDo::new(3, true, "Build Website"),
+            ToDo{id:0,complete:false,action: "Walk the dog".into()},
+            ToDo{id:1,complete:false,action: "Buy new couch".into()},
+            ToDo{id:2,complete:true,action: "Watch Luther".into()},
+            ToDo{id:3,complete:true,action: "Build Website".into()},
         ]
     }
     fn remove_test_file(file_name: impl AsRef<Path>) {

@@ -20,7 +20,7 @@ impl ToDo {
     /// construct a new ToDo item
     /// ```
     /// # use wasm_tutorial_shared::models::*;
-    /// let walk_dog = ToDo::new(1, false, "Walk the dog");
+    /// let walk_dog = ToDo::new("Walk the dog".into());
     /// ```
     pub fn new(action: String) -> ToDo {
         ToDo {
@@ -84,11 +84,11 @@ mod test {
     fn serialization() {
         assert_eq!(Message::GetAll,
             Message::from_bytes(Message::GetAll.to_bytes()).unwrap());
-        let al = Message::All(vec![ToDo::new(0, false, "")]);
+        let al = Message::All(vec![ToDo{id:0,complete:false,action:"".into()}]);
         assert_eq!(al.clone(), Message::from_bytes(al.to_bytes()).unwrap());
-        let ad = Message::Add(ToDo::new(-1,false,""));
+        let ad = Message::Add(ToDo::new("".into()));
         assert_eq!(ad.clone(), Message::from_bytes(ad.to_bytes()).unwrap());
-        let u = Message::Update(ToDo::new(10,true,"junk"));
+        let u = Message::Update(ToDo{id:10,complete:true,action:"junk".into()});
         assert_eq!(u.clone(), Message::from_bytes(u.to_bytes()).unwrap());
         let r = Message::Remove(9);
         assert_eq!(r.clone(), Message::from_bytes(r.to_bytes()).unwrap());
@@ -97,8 +97,8 @@ mod test {
     }
     #[test]
     fn new_todo() {
-        let nt = ToDo::new(10,false,"junk");
-        let t = ToDo { id: 10, complete: false, action: "junk".into()};
+        let nt = ToDo::new("junk".into());
+        let t = ToDo { id: -1, complete: false, action: "junk".into()};
         assert_eq!(nt, t);
     }
 }
