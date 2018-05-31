@@ -1,0 +1,19 @@
+title: Moving along
+notes:
+  - title: To Do List
+  - title: Routes
+    notes:
+      - title: GET
+        notes:
+          - title: All
+      - title: POST
+        notes:
+          - title: Add
+          - title: Update
+          - title: Remove
+  - title: model
+    notes:
+      - title: id
+      - title: complete
+      - title: action
+  - title: design

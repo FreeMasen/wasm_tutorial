@@ -1,0 +1,10 @@
+title: Bindgen
+notes:
+  - title: wbg created this
+  - title: generate_greeting
+    notes:
+      - title: line 42
+  - title: generate_custom_greeting
+    notes:
+      - title: line 69
+  - title: see web version for more

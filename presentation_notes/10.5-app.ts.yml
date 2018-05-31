@@ -1,0 +1,24 @@
+title: app.ts
+notes:
+  - title: js entry
+  - title: DOMContentLoaded
+  - title: mocked todos
+  - title: register events
+    notes: 
+      - title: button
+  - title: newToDO
+    notes:
+      - title: button click
+      - title: get input.value
+      - title: create new mock
+  - title: removeToDo
+    notes:
+      - title: filters todos
+  - title: markToDo
+    notes: 
+      - title: toggle complete
+  - title:
+    notes: render
+      - title: react ripoff
+      - title: clears/updates
+      - title: splits list into complete/not complete

@@ -1,0 +1,29 @@
+title: HW Lib
+notes:
+  - title: src/lib.rs
+  - title: cargo new --lib
+  - title: Rust syntax
+    notes:
+      - title: implicit return
+      - title: pub
+      - title: fn
+      - title: fn name
+      - title: args
+      - title: ->
+      - title: no void
+  - title: genrate_greeting
+  - title: generate_custom_greeting
+  - title: cargo build --lib
+  - title: how to use?
+  - title: question !?
+    notes: 
+      - title: Rust macro
+      - title: Get around restrictions
+        notes:
+          - title: like dynamic params
+      - title: format! = `${}` or String.format
+  - title: question str vs String?
+    notes:
+      - title: two strings
+      - title: literals are static, like normal
+      - title: 

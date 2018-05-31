@@ -1,0 +1,11 @@
+title: Cargo
+notes: 
+  - title: Cargo.toml
+    notes:
+      - title: This works a lot like package.json
+      - title: Config info
+      - title: dependencies
+  - title: Global installs
+    notes:
+      - title: Sort of like npm -g install [package]
+      - title: Will put binaries in your path

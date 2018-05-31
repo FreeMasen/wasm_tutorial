@@ -1,0 +1,13 @@
+title: Rustup
+notes: 
+  - title: Installing rustup
+    notes:
+      - title: For Unix-like systems you can use this script
+      - title: For windows you would need to download the installer from rustup.rs
+  - title: What does it install
+    notes:
+      - title: Rustup itself
+      - title: cargo
+      - title: rustc, the rust compiler
+      - title: you can check each is installed and their version with these commands
+      

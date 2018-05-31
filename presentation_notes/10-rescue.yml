@@ -1,0 +1,23 @@
+title: Wasm to the rescue
+notes:
+  - title: Rust can deserialize bincode
+  - title: Rust can serialize JSON
+  - title: let's do it in the browser
+  - title: new project
+    notes:
+      - title: cargo new --lib
+      - title: cargo.toml
+        notes:
+          - title: crate-type
+          - title: deps
+            notes:
+              - title: serde
+              - title: serde_derive
+              - title: serde_json
+              - title: bincode
+              - title: wasm-bindgen
+              - title: shared models
+          - title: LTO
+            notes:
+              - title: Link Time Optimization
+              - title: Tree shake the rust

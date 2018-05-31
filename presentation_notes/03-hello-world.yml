@@ -1,0 +1,17 @@
+title: Hello World
+notes:
+  - title: Let's build HW in Rust
+    notes:
+      - title: Cargo heavy lifting
+      - title: cargo new hello_world
+      - title: This command will create some files for us
+        notes:
+          - title: ./hello_world/
+          - title: Cargo.toml
+          - title: src/main.rs
+      - title: If we open the main.rs file
+      - title: cargo new has written HW for us
+      - title: We can run this by using cargo run
+        notes:
+          - title: build + execute
+          - title: ./target/debug/hello_world[.exe]

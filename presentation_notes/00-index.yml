@@ -1,0 +1,23 @@
+title: Outline
+notes:
+  - title: Annotated Presentation
+    notes:
+      - title: Extra info
+      - title: More time
+  - title: Covering
+    notes:
+      - title: Rust
+        notes:
+          - title: What is it?
+          - title: HW
+          - title: Lib
+      - title: Wasm
+        notes:
+          - title: What is it?
+      - title: Mix it all up
+        notes:
+          - title: HW to wasm
+          - title: How to use
+      - title: Contrived ex
+        notes: 
+          - title: To Do + twist

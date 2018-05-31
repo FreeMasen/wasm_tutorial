@@ -1,0 +1,8 @@
+title: Building
+notes:
+  - title: +nightly
+  - title: --target
+  - title: wasm-bindgen
+    notes:
+      - title: wasm location
+      - title: --out-dir

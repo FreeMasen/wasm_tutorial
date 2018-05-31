@@ -26,9 +26,21 @@
     'use strict';
     window.addEventListener('DOMContentLoaded', checkForPresentation);
     function checkForPresentation() {
-        if (location.search.indexOf('presenting=true') > -1) {
+        let pres = 'presenting=';
+        let presIdx = location.search.indexOf('presenting=');
+        let ampIdx = location.search.indexOf('&');
+        let presQ;
+        if (ampIdx > -1) {
+            presQ = location.search.substr(presIdx, ampIdx)
+        } else {
+            presQ = location.search;
+        }
+        if (presIdx < 0) {
+            return removePresenting();
+        }
+        updateLinks(presQ);
+        if (presQ.split('=')[1] == 'true') {
             removeExplains();
-            updateLinks();
             addArrowHandlers();
             getNotes();
         } else {
@@ -38,6 +50,7 @@
 
     function addArrowHandlers() {
         window.addEventListener('keyup', ev => {
+            if (ev.ctrlKey) return;
             switch (ev.key) {
                 case 'ArrowRight':
                     return goToLink('next-page');
@@ -57,11 +70,31 @@
         removeClass('.explain');
     }
 
-    function updateLinks() {
+    function updateLinks(query) {
         let links = document.getElementsByTagName('a');
         for (var i = 0; i < links.length; i++) {
-            links[i].href = links[i].href+'?presenting=true';
+            let link = links[i];
+            if (link.href.indexOf(location.host) < 0) {
+                continue;
+            }
+            link.href = updateLink(link.href, query);
         }
+    }
+
+    function updateLink(href, query) {
+        //check if it is a local link? if not return
+        if (href.indexOf(location.host) < 0) return;
+        //see if the href has a query now
+        let hrefQIdx = href.indexOf('?');
+        //if yes, remove it
+        if (hrefQIdx > -1) {
+            href = href.substr(0, hrefQIdx);
+        }
+        //if the query doesn't have a ?, add one
+        if (query.indexOf('?') < 0) {
+            query = '?' + query;
+        }
+        return `${href}${query}`;
     }
 
     function removePresenting() {
@@ -77,13 +110,17 @@
 
     function getNotes() {
         let current = window.location.pathname;
+        if (current == '/') return fetchNotes('/notes/00-index.json')
         let parts = current.split("/");
         let stepsIdx = parts.indexOf('steps');
         if (stepsIdx < 0) return console.error('tried to get notes for a non-steps page');
         parts[stepsIdx] = 'notes';
         let url = parts.join('/');
         let jsonUrl = url.substr(0, url.length - 4) + 'json';
-        fetch(jsonUrl).then(res => res.json())
+        fetchNotes(jsonUrl);
+    }
+    function fetchNotes(url) {
+        fetch(url).then(res => res.json())
         .then(json => {
             console.log(json.title);
             console.log('----------')
@@ -92,16 +129,78 @@
         .catch(e => console.error('fetch error', e));
     }
     function printNotes(notes, indent = 0) {
+        if (!notes) return;
         for (var i = 0; i < notes.length;i++) {
             let note = notes[i];
             printNote(note.title, indent);
-            if (note.subNotes) {
-                printNotes(note.subNotes, indent + 1);
-            }
+            printNotes(note.notes, indent + 1);
         }
     }
     function printNote(note, indent) {
         console.log(`${'    '.repeat(indent)}- ${note}`);
+    }
+    const presenting = {
+        on() {
+            location.search = '?presenting=true';
+        },
+        off() {
+            location.search = '?presenting=false';
+        },
+        toggle() {
+            if (window.location.href.indexOf('?presenting=true') > -1) {
+                presenting.off()
+            } else {
+                presenting.on()
+            }
+        }
+    }
+    let sequence = [];
+    //              ^,^,v,v,<,>,<,>,b,a,start
+    const konami = [0,0,2,2,3,1,3,1,4,5,6];
+    window.addEventListener('keyup',ev => {
+        switch (ev.key) {
+            case 'ArrowUp':
+                sequence.push(0);
+            break;
+            case 'ArrowRight':
+                sequence.push(1);
+            break;
+            case 'ArrowDown':
+                sequence.push(2);
+            break;
+            case 'ArrowLeft':
+                sequence.push(3);
+            break;
+            case 'b' || 'B':
+                sequence.push(4);
+                ev.stopPropagation();
+                ev.stopImmediatePropagation();
+            break;
+            case 'a' || 'A':
+                ev.stopPropagation()
+                sequence.push(5);
+            break;
+            case 'Enter':
+                sequence.push(6);
+            break;
+            case 'Control':
+                return;
+            default:
+                sequence = [];
+                return;
+        }
+        
+        if (isKonami(sequence)) {
+            presenting.toggle();
+        }
+    })
+
+    function isKonami(sequence) {
+        if (sequence.length != konami.length) return false;
+        for (var i = 0; i < sequence.length; i++) {
+            if (sequence[i] != konami[i]) return false;
+        }
+        return true;
     }
 </script>
 {% if page.js %}
@@ -119,5 +218,24 @@
     span.nn,
     span.k {
         color: #099 !important;
+    }
+    .rouge-table {
+        margin-bottom: 0;
+    }
+    .rouge-table,
+    .rouge-table > tbody,
+    .rouge-table > tbody > tr,
+    .rouge-table > tbody > tr > td,
+    .rouge-table > tbody > tr > .code > pre {
+        border: 0;
+        padding: 0;
+    }
+    
+    .rouge-table > tbody > tr > .code > pre {
+        padding-left: 5px;
+    }
+    .rouge-table > tbody > tr > td > .lineno {
+        /* border: 1px solid ghostwhite; */
+        padding: 0;
     }
 </style>

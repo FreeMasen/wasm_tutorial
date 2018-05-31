@@ -1,0 +1,11 @@
+title: index.html
+notes:
+  - title: main, wrapper
+  - title: header
+    notes:
+      - title: input
+      - title: button
+  - title: list-container
+    notes:
+      - title: js will fill
+  - title: webpack's app.js file

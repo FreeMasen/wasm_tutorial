@@ -1,0 +1,14 @@
+title: Getting Started
+notes: 
+  - title: Rust's Developer tools
+    notes:
+      - title: Rustup
+        notes:
+          - title: Manage the Rust compiler installation
+          - title: New rustc ever 6 weeks
+      - title: Cargo
+        notes:
+          - title: Wrapper around the compiler
+          - title: Downloads dependencies
+          - title: Installs global Commands
+          - title: Like NPM

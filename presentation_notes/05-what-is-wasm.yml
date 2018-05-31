@@ -1,0 +1,20 @@
+title: What is WASM?
+notes:
+  - title: A new standard
+  - title: asm.js
+    notes:
+      - title: asmjs.org
+      - title: Metal OS Talk
+        notes:
+        - title: the Birth and Death of JS
+        - title: Gary Bernhardt
+        - title: PyCon 2014
+        - title: Destroy All Software
+  - title: Intermediate Language
+    notes:
+      - title: Half-way Point
+      - title: Java=bytecode, C#=MSIL
+  - title: Strong Static Tying
+  - title: No Garbage Collector
+    notes:
+      - title: maybe in the future

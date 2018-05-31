@@ -1,0 +1,17 @@
+title: Is JS Dead?
+notes:
+  - title: WASM is now 3 years old
+    notes:
+      - title: Roadmap
+        notes:
+          - title: WebAssembly.org
+          - title: stabilize
+          - title: community infra
+          - title: in-progress = spec
+  - title: Only numbers
+  - title: More complicated
+    notes:
+      - title: shared mem
+      - title: return pointer
+      - title: but length?
+      - title: oof...

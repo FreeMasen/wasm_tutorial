@@ -1,0 +1,38 @@
+title: How we use the bindgings
+notes:
+  - title: index.html
+    notes:
+      - title: input
+      - title: button
+      - title: container
+      - title: no input text-world
+      - title: input text-hello[input-text]
+  - title: index.js
+    notes:
+      - title: webpack import
+      - title: hw global
+      - title: on resolve
+        notes:
+          - title: add event listener
+          - title: assign to hw
+      - title: sayHello()
+        notes:
+          - title: find input
+          - title: if no value, HW
+          - title: else use value
+          - title: crossing wasm boundry
+      - title: updateMessage
+        notes:
+          - title: clear container
+          - title: insert msg
+  - title: webpack
+    notes:
+      - title: WP4+
+      - title: config
+        notes:
+          - title: most basic
+  - title: webpack-dev-server
+  - title: Chrome bug
+    notes:
+      - title: live demo
+      - title: more later

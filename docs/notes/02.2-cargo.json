@@ -1,0 +1,1 @@
+{"title":"Cargo","notes":[{"title":"Cargo.toml","notes":[{"title":"This works a lot like package.json","notes":null},{"title":"Config info","notes":null},{"title":"dependencies","notes":null}]},{"title":"Global installs","notes":[{"title":"Sort of like npm -g install [package]","notes":null},{"title":"Will put binaries in your path","notes":null}]}]}

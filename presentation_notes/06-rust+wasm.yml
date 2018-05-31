@@ -1,0 +1,9 @@
+title: Rust and Wasm
+notes:
+  - title: wasm-bindgen
+    notes:
+      - title: From Moz
+      - title: bindings + generation
+      - title: injects code into rust project
+      - title: js "glue"
+  - title: emscripten?

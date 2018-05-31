@@ -1,0 +1,8 @@
+title: Using HW lib
+notes:
+  - title: extern crate
+  - title: use
+    notes: 
+      - title: totally optional
+      - title: crate::fn
+  - title: cargo run

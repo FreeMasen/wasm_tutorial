@@ -1,0 +1,10 @@
+title: The Wrench
+notes:
+  - title: Server Dev
+    notes:
+      - title: Rust Fanboy
+      - title: no JSON
+      - title: Bincode
+        notes:
+          - title: rust memory model
+          - title: no possible js deserializer

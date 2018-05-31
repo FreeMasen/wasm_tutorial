@@ -1,0 +1,49 @@
+title: Message
+notes:
+  - title: Rust Enum
+    notes:
+      - title: Associated Value
+      - title: match
+        notes:
+          - title: syntax
+          - title: extracting associated value
+          - title: catch all with _
+      - title: impl blocks
+  - title: GetAll
+    notes:
+      - title: plain c style enum
+  - title: All
+    notes:
+      - title: Comes with ToDos
+      - title: Vec == List/Array
+      - title: All server responses
+  - title: Add
+    notes: 
+      - title: Comes with ToDo
+  - title: Update
+    notes:
+      - title: Comes with ToDo
+  - title: Remove
+    notes:
+      - title: Comes with ID
+  - title: Error
+    notes:
+      - title: Comes with String
+  - title: fns
+    notes:
+      - title: for_error
+        notes:
+          - title: ctor
+          - title: impl trait
+      - title: to_bytes
+        notes:
+          - title: wrapper
+      - title: from_bytes
+        notes:
+          - title: ctor
+          - title: can fail
+            notes:
+              - title: result
+              - title: genaric notation?
+              - title: match
+              - title: unwrap_or in to_bytes

@@ -1,0 +1,42 @@
+title: renderer.ts
+notes:
+  - title: Handles building dom nodes
+    notes:
+      - title: todoList
+        notes:
+          - title: takes
+            notes: 
+              - title: title
+              - title: list
+              - title: removeCB
+              - title: changeCB
+          title: create container
+          title: create list header
+          title: no elements, insert dummy
+          title: if elements, loop and insert into container
+      - title: todo
+        notes: 
+          - title: takes sames as todoList
+          - title: creates container
+          - title: create checkbox
+          - title: create span
+          - title: create X
+          - title: register events
+      - title: todoCheckBox
+        notes:
+          - title: uses div
+          - title: changes text inside
+          - title: registers event
+      - title: todoAction
+        notes:
+          - title: creates span
+      - title: todoRemove
+        notes:
+        - title: creates X
+      - title: dummy
+        notes:
+          - title: empty item for no list
+  - title: also inserting toast message
+    notes:
+      - title: inserts dom node
+      - title: setTimeout

@@ -1,0 +1,11 @@
+title: What is Rust?
+notes:
+  - title: Rust is a programming language from Mozilla
+  - title: Strong static typing
+  - title: Fully compiled
+    notes:
+      - title: like c or c++
+      - title: No virtual machine
+  - title: Memory safe guarantee
+    notes:
+      - title: No garbage collector

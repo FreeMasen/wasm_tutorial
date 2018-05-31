@@ -1,0 +1,11 @@
+title: ToDo
+notes:
+  - title: struct
+    notes:
+      - title: rust's object type
+      - title: struct block
+      - title: impl block
+      - title: no ctor
+        notes: 
+          - title: literal notation
+      - title: "::"

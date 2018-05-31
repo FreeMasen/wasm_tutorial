@@ -1,0 +1,27 @@
+title: HW.wasm
+notes:
+  - title: getting setup
+    notes: 
+      - title: nightly
+      - title: w-u-u
+        notes:
+          - title: targets
+          - title: inst-manu-os
+      - title: wbg-cli
+      - title: Cargo.toml
+        notes:
+          - title: add dep wbg
+          - title: crate-type
+            notes:
+              - title: C Dynamic Library
+      - title: update lib.rs
+        notes:
+          - title: feature
+            notes:
+              - title: proc_macro
+              - title: wasm_custom_section
+              - title: wasm_import_module
+          - title: "#[wasm-bindgen]"
+            notes:
+              - title: Like decorator/attributes
+              - title: injects the glue

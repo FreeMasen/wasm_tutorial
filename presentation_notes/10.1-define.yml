@@ -1,0 +1,39 @@
+title: bincode_parser.rs
+notes:
+  - title: "#![feature(...)]"
+    notes:
+      - title: proc_macro
+      - title: wasm_custom_section
+      - title: wasm_import_module
+  - title: extern crates
+    notes:
+      - title: deps list in cargo.toml
+  - title: use
+    notes:
+      - title: prelud::*
+  - title: "#[wasm-bindgen]"
+  - title: bincode_to_json
+    notes:
+      - title: takes in bytes
+      - title: if let
+      - title: match
+      - title: return?
+      - title: _
+      - title: fallback = "[]"
+  - title: get_add_message
+    notes:
+      - title: takes 1 string
+      - title: uses ctor
+      - title: converts
+  - title: get_update_message
+    notes:
+      - title: takes ToDo parts
+      - title: literal ctor
+      - title: converts
+  - title: get_remove_message
+    notes:
+      - title: takes id
+      - title: converts
+  - title: get_all_message
+    notes:
+      - title: converts

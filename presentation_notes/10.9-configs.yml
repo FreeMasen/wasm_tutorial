@@ -1,0 +1,13 @@
+title: configs
+notes:
+  - title: package.json
+    notes:
+      - title: awesome typescipt loader
+      - title: ts
+      - title: webpack
+  - title: ts
+    notes:
+      - title: No Implicit, No WebAssembly
+  - title: webpack
+    notes: 
+      - title: bare bones ts
