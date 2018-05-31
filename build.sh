@@ -19,6 +19,8 @@ rustup install nightly
 echo "Installing wasm32-unknown-unknown"
 rustup target add --toolchain nightly wasm32-unknown-unknown
 cd ./crates/browser
+echo "getting any updates to wasm-bindgen"
+cargo update -p wasm-bindgen
 echo "building the browser project"
 cargo +nightly build --target wasm32-unknown-unknown --release
 cd ../..
