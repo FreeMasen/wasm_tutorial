@@ -45,19 +45,26 @@
             getNotes();
         } else {
             removePresenting();
+            removeArrowHandlers();
         }
     }
 
     function addArrowHandlers() {
-        window.addEventListener('keyup', ev => {
-            if (ev.ctrlKey) return;
-            switch (ev.key) {
-                case 'ArrowRight':
-                    return goToLink('next-page');
-                case 'ArrowLeft':
-                    return goToLink('previous-page');
-            }
-        });
+        window.addEventListener('keyup', arrowHandler);
+    }
+
+    function removeArrowHandlers() {
+        window.removeEventListener('keyup', arrowHandler);
+    }
+
+    function arrowHandler(ev) {
+        if (ev.ctrlKey) return;
+        switch (ev.key) {
+            case 'ArrowRight':
+                return goToLink('next-page');
+            case 'ArrowLeft':
+                return goToLink('previous-page');
+        }
     }
 
     function goToLink(id) {
