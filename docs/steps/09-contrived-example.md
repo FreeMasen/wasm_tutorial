@@ -10,8 +10,11 @@ next:
     text: "The Wrench"
 ---
 <div class="explain">
-With <code>Hello, World!</code> out of the way, let's sink our teeth into something a little more interesting.
+<p>
+With <code>Hello, World!</code> out of the way, let's sink our teeth into something a little more interesting. The project manager at your work has approached you about building a to-do list application. To get started they have given you this spec to work from.
+</p>
 </div>
+
 ## Specification
 ### Main goal
 Build a todo list application
