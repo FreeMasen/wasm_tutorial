@@ -120,7 +120,7 @@
     function removeClass(el, cls) {
         let classList = el.getAttribute('class');
         let classes = classList.split(' ');
-        let idx = classList.indexOf(cls);
+        let idx = classes.indexOf(cls);
         if (idx == -1) return;
         classes.splice(idx, 1);
         el.setAttribute('class', classes.join(' '));
@@ -207,11 +207,8 @@
             break;
             case 'b' || 'B':
                 sequence.push(4);
-                ev.stopPropagation();
-                ev.stopImmediatePropagation();
             break;
             case 'a' || 'A':
-                ev.stopPropagation()
                 sequence.push(5);
             break;
             case 'Enter':
