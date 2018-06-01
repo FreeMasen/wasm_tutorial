@@ -38,4 +38,3 @@ We use the keyword <code>pub</code> to make sure that this function will be avai
 <p>Now if we were to run <code>cargo build --lib</code> we would generate a library file that could be used from other <code>rust</code> programs, but how would we use that?</p>
 </div>
 <br />
-<a class="explain" href="{{"/steps/04.1-strings.html" | relative_url}}">What is with the ! and calling .to_string() on a string?</a>

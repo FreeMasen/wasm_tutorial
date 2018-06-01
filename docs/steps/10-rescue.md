@@ -39,7 +39,7 @@ serde_derive = "*"
 serde_json = "*"
 bincode = "1.0.0"
 wasm-bindgen = "0.2"
-wasm_tutorial_shared = {path = "../shared}
+wasm_tutorial_shared = { path = "../shared" }
 
 [profile.release]
 lto = true
