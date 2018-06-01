@@ -10,10 +10,10 @@ notes:
               - title: list
               - title: removeCB
               - title: changeCB
-          title: create container
-          title: create list header
-          title: no elements, insert dummy
-          title: if elements, loop and insert into container
+          - title: create container
+          - title: create list header
+          - title: no elements, insert dummy
+          - title: if elements, loop and insert into container
       - title: todo
         notes: 
           - title: takes sames as todoList

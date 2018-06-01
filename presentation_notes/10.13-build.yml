@@ -1,1 +1,5 @@
 title: Build
+notes:
+  - title: move wasm to /dist
+  - title: webpack
+  - title: Let's see it!

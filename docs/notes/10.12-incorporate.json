@@ -1,1 +1,1 @@
-{"title":"Putting it together","notes":null}
+{"title":"Putting it together","notes":[{"title":"update app.ts","notes":null},{"title":"use wasm.booted","notes":null},{"title":"when resolve pass to new App()","notes":null},{"title":"remove mocks","notes":null},{"title":"update fns to call this.http.*","notes":null},{"title":"all will provide new todos","notes":[{"title":"over-write this.todos","notes":null},{"title":"re-render","notes":null}]}]}

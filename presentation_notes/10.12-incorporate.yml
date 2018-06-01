@@ -1,1 +1,11 @@
 title: Putting it together
+notes:
+  - title: update app.ts
+  - title: use wasm.booted
+  - title: when resolve pass to new App()
+  - title: remove mocks
+  - title: update fns to call this.http.*
+  - title: all will provide new todos
+    notes:
+      - title: over-write this.todos
+      - title: re-render

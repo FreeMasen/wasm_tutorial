@@ -1,0 +1,48 @@
+title: Network.ts
+notes:
+  - title: All network stuff
+  - title: helpers
+    notes:
+      - title: request
+        notes:
+          - title: wrapper around fetch
+          - title: route, always /todo
+          - title: body is optional
+          - title: method is post or get
+          - title: if not 200
+            notes:
+              - title: gets body as text
+              - title: throws error
+          - title: if 200
+            notes:
+              - title: converts body to ArrayBuffer
+              - title: passes to bufferToArray
+      - title: bufferToArray
+        notes:
+          - title: passing bytes to wasm
+          - title: getting json string from wasm
+          - title: returning the parsed json
+  - title: routes
+    notes:
+      - title: getToDoList
+        notes:
+          - title: public facing request
+      - title: addToDoItem
+        notes:
+        - title: takes the action
+        - title: passes it to wasm
+        - title: gets the request body from wasm
+        - title: uses request to return the response
+      - title: updateToDoItem
+        notes:
+          - title: takse the new ToDO
+          - title: breaks it up
+          - title: passes it to wasm
+          - title: gets the body
+          - title: returns the result of request
+      - title: removeToDoItem
+        notes:
+          - title: takes the todo
+          - title: sends the id to wasm
+          - title: gets the body
+          - title: returns the result of requese

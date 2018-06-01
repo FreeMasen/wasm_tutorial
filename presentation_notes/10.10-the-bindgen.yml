@@ -1,0 +1,24 @@
+title: Bindgen
+notes:
+  - title: "gen'd by wasm-bindgen"
+  - title: webpack + chrome bug
+  - title: remove import
+  - title: replace with mod global wasm
+  - title: add booted
+    notes:
+      - title: fetch
+      - title: compile
+        notes:
+          - title: async
+          - title: pass arrayBuffer
+          - title: need importObject see below
+      - title: set wasm = mod.instance.exports
+  - title: importOjbec
+    notes:
+      - title: contract with wasm
+      - title: at bottom
+      - title: ./[wasm_name]
+      - title: placeholder
+      - title: both have 1 for each export
+
+

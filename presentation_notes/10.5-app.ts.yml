@@ -6,7 +6,7 @@ notes:
   - title: register events
     notes: 
       - title: button
-  - title: newToDO
+  - title: newToDo
     notes:
       - title: button click
       - title: get input.value
@@ -17,8 +17,8 @@ notes:
   - title: markToDo
     notes: 
       - title: toggle complete
-  - title:
-    notes: render
+  - title: render
+    notes:
       - title: react ripoff
-      - title: clears/updates
-      - title: splits list into complete/not complete
+      - title: clears and updates
+      - title: splits list into complete and not complete

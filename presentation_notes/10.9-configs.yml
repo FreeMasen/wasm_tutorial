@@ -10,4 +10,4 @@ notes:
       - title: No Implicit, No WebAssembly
   - title: webpack
     notes: 
-      - title: bare bones ts
+      - title: bare bones + ts
