@@ -40,7 +40,7 @@ fn main() {
 <div class="explain">
 
 
-Like <code>C</code> programs, rust programs require a function called <code>main</code>. For a rust program to work <code>main</code> needs to take no parameters and return nothing (there are a few things it can return but let's just stick with this for now). Here we have a function that simply prints "Hello, world!" to the command prompt; lets test that out. To do that we are going to use the command <code>cargo run</code>, which will compile our program and then run it, the program will be compiled into a <code>./target/debug/</code>folder.
+Like <code>C</code> programs, rust programs require a function called <code>main</code>. For a rust program to work <code>main</code> needs to take no parameters and return nothing (there are a few things it can return but let's just stick with this for now). Here we have a function that simply prints "Hello, world!" to the command prompt; lets test that out. To do that we are going to use the command <code>cargo run</code>, which will compile our program and then run it, the program will be compiled into a <code>./target/debug/</code>folder if you wanted to dig it up later.
 <br />
 </div>
 

@@ -5,6 +5,7 @@ next:
   text: What is Rust
 ---
 <div class="explain">
+<h1>Outline</h1>
 <ul>
 <li>
 <a href="{{"/steps/01-what_is_rust.html" | relative_url}}">What is Rust</a>

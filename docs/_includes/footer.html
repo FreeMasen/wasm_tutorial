@@ -1,5 +1,5 @@
 {% if page.readings %}
-<div class="explain" style="width:500px;margin:auto;display:flex;flex-flow:column;align-items:first-baseline">
+<div class="explain" id="readings">
 <span style="font-weight:bold;">Additional Reading</span>
 <hr style="width:100%;border:0;border-bottom:1px solid #e8e8e8;" />
 {% for reading in page.readings %}
@@ -67,7 +67,8 @@
     }
 
     function removeExplains() {
-        removeClass('.explain');
+        removeElements('.explain');
+        addElements('.presenting');
     }
 
     function updateLinks(query) {
@@ -98,26 +99,57 @@
     }
 
     function removePresenting() {
-        removeClass('.presenting')
+        removeElements('.presenting');
+        addElements('.explain');
     }
 
-    function removeClass(cls) {
+    function removeElements(cls) {
         let elements = document.querySelectorAll(cls);
         for (var i = 0; i < elements.length; i++) {
-            elements[i].parentElement.removeChild(elements[i]);
+            addClass(elements[i], 'hide');
         }
     }
 
+    function addElements(cls) {
+        let elements = document.querySelectorAll(cls);
+        for (var i = 0; i < elements.length; i++) {
+            removeClass(elements[i], 'hide');
+        }
+    }
+
+    function removeClass(el, cls) {
+        let classList = el.getAttribute('class');
+        let classes = classList.split(' ');
+        let idx = classList.indexOf(cls);
+        if (idx == -1) return;
+        classes.splice(idx, 1);
+        el.setAttribute('class', classes.join(' '));
+    }
+
+    function addClass(el, cls) {
+        let classList = el.getAttribute('class');
+        let classes = classList.split(' ');
+        if (classes.indexOf(cls) > -1) return;
+        classes.push(cls);
+        el.setAttribute('class', classes.join(' '));
+    }
+
     function getNotes() {
+        //if at root get root notes
         let current = window.location.pathname;
-        if (current == '/') return fetchNotes('/notes/00-index.json')
+        if (current == '/' || current == '/wasm_tutorial/') return fetchNotes('/notes/00-index.json')
+        //split path
         let parts = current.split("/");
+        //find steps
         let stepsIdx = parts.indexOf('steps');
+        //if not there, no notes needed
         if (stepsIdx < 0) return console.error('tried to get notes for a non-steps page');
+        //change steps to notes
         parts[stepsIdx] = 'notes';
+        let currentPage = parts[parts.length - 1];
+        parts[parts.length - 1] = currentPage.substr(0, currentPage.length - 4) + 'json';
         let url = parts.join('/');
-        let jsonUrl = url.substr(0, url.length - 4) + 'json';
-        fetchNotes(jsonUrl);
+        fetchNotes(url);
     }
     function fetchNotes(url) {
         fetch(url).then(res => res.json())
@@ -141,10 +173,12 @@
     }
     const presenting = {
         on() {
-            location.search = '?presenting=true';
+            history.replaceState({}, 'WASM+Rust Tutorial', location.pathname + '?presenting=true');
+            checkForPresentation();
         },
         off() {
-            location.search = '?presenting=false';
+            history.replaceState({}, 'WASM+Rust Tutorial', location.pathname + '?presenting=false');
+            checkForPresentation();
         },
         toggle() {
             if (window.location.href.indexOf('?presenting=true') > -1) {
@@ -237,5 +271,17 @@
     .rouge-table > tbody > tr > td > .lineno {
         /* border: 1px solid ghostwhite; */
         padding: 0;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    #readings {
+        width: 500px;
+        margin: auto;
+        display: flex;
+        flex-flow: column;
+        align-items: first-baseline;
     }
 </style>

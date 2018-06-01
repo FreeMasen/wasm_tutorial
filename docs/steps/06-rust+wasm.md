@@ -32,7 +32,7 @@ Generates <code>.js</code> glue code
 </div>
 <div class="explain">
 <p>
-We are going to use a project from Mozilla that is designed to make working with wasm in js possible. This project is called <code>wasm-bindgen</code>, bindgen is a portmanteau of bindings and generation, that will generate a javascript file that will "bind" to our wasm functions. The reason we can do this is because the kind folks that work on the rust compiler have created a path to build Web Assembly instead of a native application. We can tell cargo we want to do this by using the <code>--target</code> flag and then provide this "target".
+We are going to use a project from Mozilla that is designed to make working with wasm in js possible. This project is called <code>wasm-bindgen</code>, bindgen is a portmanteau of bindings and generation, it will generate a javascript file that will "bind" to our wasm functions. The reason we can do this is because the kind folks that work on the Rust compiler have added the ability to build Web Assembly instead of a native application. We can tell cargo we want to do this by using the <code>--target</code> flag and then provide this "target".
 </p>
 <p>
 The "target" flag allow us to compile programs that will run on another platform from whatever computer we are on. Say you wanted to compile a Linux program from your Mac, you can do that by telling the rust compiler to "target" linux. This is how we are going to go from Rust to Web Assembly, we are going to tell cargo that our "target" is <code>wasm32-unknown-unknown</code>. Targets have a special structure called a "triplet", each position means something different and there are three of them, fancy that.

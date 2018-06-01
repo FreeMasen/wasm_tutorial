@@ -3,5 +3,4 @@ title: WASM+Rust Tutorial
 header_pages: 
     - redirect.html
 github_username: "freemasen"
-markdown: redcarpet
 extensions: [fenced_code_blocks, disable_indented_code_blocks]

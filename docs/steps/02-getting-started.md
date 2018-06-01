@@ -1,6 +1,6 @@
 ---
 permalink: "/steps/02-getting-started.html"
-title: "What is Rust"
+title: "Rust Tools"
 layout: "post"
 prev: 
     url: "/steps/01-what_is_rust.html"

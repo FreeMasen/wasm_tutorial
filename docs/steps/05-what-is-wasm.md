@@ -37,7 +37,7 @@ readings:
 
 <p>To move things beyond what <code>asm.js</code> could do, WebAssembly or wasm will provide developers with a way to compile their code to an intermediate language (IL). If you have ever written, Java or C#, these languages compile down to an IL (Java's bytecode, .NET's MSIL), this intermediate step is much faster to finish compiling at run time.</p>
 
-<p>Most languages that utilize "Just-In-Time" compilation or interpretation need to have a supervisor injected into them called the garbage collector. This supervisor just monitors the memory use for your application and automatically cleans up anything that you aren't using, JS has a garbage collector that makes life a lot easier. I only bring this up because wasm does not allow for a garbage collector, that may change in the future but currently we need to make sure we clean up our own garbage.</p>
+<p>Most languages that utilize "Just-In-Time" compilation or interpretation need to have a supervisor injected into them called the garbage collector. This supervisor just monitors the memory use for your application and automatically cleans up anything that you aren't using, for example JS has a garbage collector and the world is a better place for it. I only bring this up because wasm does not allow for a garbage collector, that may change in the future but currently we need to make sure we clean up our own garbage.</p>
 
-<p>When you compare wasm with rust, there is a lot of overlap. Especially when you include the fact that <code>asm.js</code> is a Mozilla project as well.</p>
+<p>When you compare wasm with Rust, there is a lot of overlap. Especially when you include the fact that <code>asm.js</code> is a Mozilla project as well.</p>
 </div>
