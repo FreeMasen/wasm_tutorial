@@ -144,7 +144,8 @@
     function getNotes() {
         //if at root get root notes
         let current = window.location.pathname;
-        if (current == '/' || current == '/wasm_tutorial/') return fetchNotes('/notes/00-index.json')
+        if (current == '/') return fetchNotes('/notes/00-index.json');
+        if (current == '/wasm_tutorial/') return fetchNotes('/wasm_tutorial/notes/00-index.json')
         //split path
         let parts = current.split("/");
         //find steps
