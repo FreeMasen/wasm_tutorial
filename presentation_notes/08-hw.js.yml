@@ -1,12 +1,5 @@
 title: How we use the bindgings
 notes:
-  - title: index.html
-    notes:
-      - title: input
-      - title: button
-      - title: container
-      - title: no input text-world
-      - title: input text-hello[input-text]
   - title: index.js
     notes:
       - title: webpack import
@@ -31,6 +24,13 @@ notes:
       - title: config
         notes:
           - title: most basic
+  - title: index.html
+    notes:
+      - title: input
+      - title: button
+      - title: container
+      - title: no input text-world
+      - title: input text-hello[input-text]
   - title: webpack-dev-server
   - title: Chrome bug
     notes:
